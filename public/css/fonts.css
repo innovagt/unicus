@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'GOTHIC';
+    src: url('../fonts/GOTHIC.eot');
+    src: url('../fonts/GOTHIC.eot') format('embedded-opentype'),
+         url('../fonts/GOTHIC.woff2') format('woff2'),
+         url('../fonts/GOTHIC.woff') format('woff'),
+         url('../fonts/GOTHIC.ttf') format('truetype'),
+         url('../fonts/GOTHIC.svg#GOTHIC') format('svg');
+}
+@font-face {
+    font-family: 'GOTHICB';
+    src: url('../fonts/GOTHICB.eot');
+    src: url('../fonts/GOTHICB.eot') format('embedded-opentype'),
+         url('../fonts/GOTHICB.woff2') format('woff2'),
+         url('../fonts/GOTHICB.woff') format('woff'),
+         url('../fonts/GOTHICB.ttf') format('truetype'),
+         url('../fonts/GOTHICB.svg#GOTHICB') format('svg');
+   }
+@font-face {
+    font-family: 'slick';
+    src: url('../fonts/slick.eot');
+    src: url('../fonts/slick.eot') format('embedded-opentype'),
+         url('../fonts/slick.woff') format('woff'),
+         url('../fonts/slick.ttf') format('truetype'),
+         url('../fonts/slick.svg#slick') format('svg');
+}
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../fonts/OpenSansRegular.eot');
+    src: url('../fonts/OpenSansRegular.eot') format('embedded-opentype'),
+         url('../fonts/OpenSansRegular.woff2') format('woff2'),
+         url('../fonts/OpenSansRegular.woff') format('woff'),
+         url('../fonts/OpenSansRegular.ttf') format('truetype'),
+         url('../fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
+}
+@font-face {
+    font-family: 'Lemon Bold';
+    src: url('../fonts/LEMONMILK-Bold.eot');
+    src: url('../fonts/LEMONMILK-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/LEMONMILK-Bold.woff2') format('woff2'),
+        url('../fonts/LEMONMILK-Bold.woff') format('woff'),
+        url('../fonts/LEMONMILK-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lemon Regular';
+    src: url('../fonts/LEMONMILK-Regular.eot');
+    src: url('../fonts/LEMONMILK-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/LEMONMILK-Regular.woff2') format('woff2'),
+        url('../fonts/LEMONMILK-Regular.woff') format('woff'),
+        url('../fonts/LEMONMILK-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lemon Medium';
+    src: url('../fonts/LEMONMILK-Medium.eot');
+    src: url('../fonts/LEMONMILK-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/LEMONMILK-Medium.woff2') format('woff2'),
+        url('../fonts/LEMONMILK-Medium.woff') format('woff'),
+        url('../fonts/LEMONMILK-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Mohave';
+    src: url('../fonts/Mohave-Medium.eot');
+    src: url('../fonts/Mohave-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Mohave-Medium.woff2') format('woff2'),
+        url('../fonts/Mohave-Medium.woff') format('woff'),
+        url('../fonts/Mohave-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Avenir Regular';
+    src: url('../fonts/AvenirNextLTPro-Regular.eot');
+    src: url('../fonts/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AvenirNextLTPro-Regular.woff2') format('woff2'),
+        url('../fonts/AvenirNextLTPro-Regular.woff') format('woff'),
+        url('../fonts/AvenirNextLTPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Avenir Bold';
+    src: url('../fonts/AvenirNextLTPro-Bold.eot');
+    src: url('../fonts/AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
+        url('../fonts/AvenirNextLTPro-Bold.woff') format('woff'),
+        url('../fonts/AvenirNextLTPro-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
