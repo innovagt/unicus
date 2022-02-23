@@ -381,30 +381,82 @@ footer .icon-f {
   margin: 0 20px 0 0;
   font-size: 14px !important;
   color: #fff;
-  font-family: 'Lemon Regular';
+  font-family: "Lemon Regular";
 }
-.bottomfooter a{
+.bottomfooter a {
   display: inline-block;
-    background: #5285BB;
-    border: 1px solid #5285BB;
-    color: #fff;
-    padding: 20px 50px;
-    font-family: "Lemon Medium";
-    font-size: 14px !important;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -ms-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+  background: #5285bb;
+  border: 1px solid #5285bb;
+  color: #fff;
+  padding: 20px 50px;
+  font-family: "Lemon Medium";
+  font-size: 14px !important;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
-.bottomfooter a:hover{
+.bottomfooter a:hover {
   background-color: transparent;
   border: 1px solid #fff;
 }
-.end small{
-color: #fff;
-font-family: 'Avenir Regular';
-}
-.end small a{
+.end small {
   color: #fff;
+  font-family: "Avenir Regular";
+}
+.end small a {
+  color: #fff;
+}
+
+/*New styles*/
+
+.header-color {
+  position: relative;
+  background: linear-gradient(224.79deg, #3a5999 0%, #008074 100%);
+}
+.filters {
+  padding: 60px;
+  text-align: center;
+}
+.filters .option-general {
+  padding: 25px 90px;
+  margin: 0 30px;
+  display: inline-block;
+  color: #3f3f3f;
+  font-family: "Lemon Medium";
+  font-size: 12px;
+  border: 1px solid #3a5999;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.filters .option-general:hover,
+.filters .option-general.active {
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  border-color: transparent;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.filters .filters-menu {
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  background-color: #ffffff;
+  text-align: left;
+}
+.filters .filters-menu a{
+  color: #3f3f3f;
+  font-family: "Lemon Regular";
+  font-size: 12px;
+  display: block;
+  margin-bottom: 25px;
+}
+.filters .filters-menu a:hover{
+  color: #3a5999;
 }

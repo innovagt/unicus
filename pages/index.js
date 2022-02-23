@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import Project from "../components/common/Project";
 import Layout from "../components/layout/Layout"
 
  const Home = () => {
@@ -12,7 +14,9 @@ import Layout from "../components/layout/Layout"
               dolor
               <span>sit amet</span>
             </h1>
-            <a href="#">Ver proyectos</a>
+            <Link href="/projects">
+              <a>Ver proyectos</a>
+            </Link>
           </div>
           <div className="social-nav">
             {/* <a href="#" target="_blank"><Image  width={25} height={25} src="/img/wt.svg" alt="" /> </a>
@@ -47,54 +51,19 @@ import Layout from "../components/layout/Layout"
             <h2>THIS IS UNICUS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla sodales bibendum. Integer
               volutpat magna hendrerit Lorem ipsum dolor si dignissim.</p>
-            <a href="#">WE ARE</a>
+            <Link href="/weare">
+              <a>WE ARE</a>
+            </Link>
           </div>
         </div>
       </section>
       <section className="work-grid">
         <div className="row">
-          <div className="col-md-6">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a routerLink="/project-detail">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-            </a>
-          </div>
+          <Project grid="col-md-6"/>
+          <Project grid="col-md-6"/>
+          <Project grid="col-md-4"/>
+          <Project grid="col-md-4"/>
+          <Project grid="col-md-4"/>
         </div>
       </section>
     </Layout>
