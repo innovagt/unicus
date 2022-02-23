@@ -27,42 +27,51 @@ const ProjectDetail = ({ project }) => {
 
   return (
     <Layout nav={false} title={attributes.title}>
-      <section className="work-grid">
+      <section className="container-in">
         <div className="row">
-          {
-            galleryProject.map(({ id, attributes }) => {
-              count++
-              count = count > 7 ? 1 : count
-              let grid = gridSelectionProject(count)
-              return (
-                 <ImageProject key={id} url={attributes.url} grid={grid}  />
-              )
-            })
-          }
+          <div className="col-md-6">{attributes.title}</div>
+          <div className="col-md-6">
+            <ul>
+              <li>País: {attributes.country.data.attributes.name}</li>
+              <li>Fecha del evento: {attributes.date_event}</li>
+            </ul>
+          </div>
         </div>
       </section>
-      {
-        recommended.length > 0 && (
-          <>
-            <section className="container-in">
-              <div className='text-center'>
-                <h2 className='title-text'>Proyectos Recomendados</h2>
-              </div>
-            </section>
-            <section className="work-grid">
-              <div className="row">
-                {
-                  recommended.map(project => 
-                    <Project key={project.id} project={project} />
-                  )
-                }
-              </div>
-            </section>
-          </>
-        )
-      }
+      <section className="container-in">
+        <div className="row">
+          <div className="col-md-6">{attributes.subtitle}</div>
+          <div className="col-md-6">{attributes.description}</div>
+        </div>
+      </section>
+      <section className="work-grid">
+        <div className="row">
+          {galleryProject.map(({ id, attributes }) => {
+            count++;
+            count = count > 7 ? 1 : count;
+            let grid = gridSelectionProject(count);
+            return <ImageProject key={id} url={attributes.url} grid={grid} />;
+          })}
+        </div>
+      </section>
+      {recommended.length > 0 && (
+        <>
+          <section className="container-in">
+            <div className="text-center">
+              <h2 className="title-text">Proyectos Recomendados</h2>
+            </div>
+          </section>
+          <section className="work-grid">
+            <div className="row">
+              {recommended.map((project) => (
+                <Project key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
     </Layout>
-  )
+  );
 }
 
 export const getServerSideProps = async context => {

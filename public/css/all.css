@@ -225,6 +225,14 @@ header .menu-logo .col-md-3 {
   width: 100%;
   object-fit: cover;
 }
+.work-grid .col-md-3:hover img {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
 .work-grid .col-md-4:hover img {
   opacity: 0.8;
   transition: all 0.3s ease;
