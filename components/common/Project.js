@@ -1,5 +1,6 @@
 import Link from "next/link"
-const Project = (  { project, grid } ) => {
+const Project = ({ project, grid = "col-md-4" }) => {
+  console.log(project)
   const {id, attributes} = project
   return (
     <div className={grid}>

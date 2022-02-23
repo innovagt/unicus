@@ -3,8 +3,10 @@ import axios from 'axios'
 import Layout from '../../components/layout/Layout'
 // import Project from '../../components/common/Project'
 import useProjects from '../../components/hooks/useProjects'
+
 const Projects = ({ projects }) => {
-  const {data} = projects
+  const { data } = projects
+
   const { Projects } = useProjects(data)
 
   // const [event, setEvents] = useState(data)

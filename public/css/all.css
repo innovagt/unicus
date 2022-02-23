@@ -193,6 +193,16 @@ header .menu-logo .col-md-3 {
 .work-grid {
   padding: 45px;
 }
+
+.work-grid .row div{
+  margin-bottom: 5px;
+}
+
+.work-grid .col-md-3{
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
 .work-grid .col-md-4 {
   overflow: hidden;
   padding: 7px;
@@ -269,7 +279,8 @@ header .menu-logo .col-md-3 {
   left: 0;
   z-index: 1;
 }
-.about-text h2 {
+.about-text h2 ,
+.title-text{
   font-family: "Lemon Medium";
   font-size: 48px;
   background: linear-gradient(#008074, #3a5999);
@@ -277,6 +288,7 @@ header .menu-logo .col-md-3 {
   color: transparent;
   margin-bottom: 40px;
 }
+
 .about-text p {
   font-family: "Avenir Regular";
   font-size: 18px;

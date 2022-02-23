@@ -4,11 +4,11 @@ import Footer from "./Footer";
 
 
 
-const Layout = ({ children, nav = true }) => {
+const Layout = ({ children, nav = true, title="Unicus" }) => {
   return (
     <>
       <Head>
-       <title>Unicus</title>
+       <title>{title}</title>
       </Head>
       <Navbar absolute={nav} />
       {children}
