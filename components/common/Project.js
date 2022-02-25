@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { API_URL } from "../../config/urls"
 const Project = ({ project, grid = "col-md-4" }) => {
   // console.log(project)
   const {id, attributes} = project
@@ -9,7 +10,7 @@ const Project = ({ project, grid = "col-md-4" }) => {
       </div>
       <Link href={`/projects/${id}`}>
         <a>
-          <img src={`http://localhost:1337${attributes.cover.data.attributes.url}`} alt="" />
+          <img src={`${API_URL}${attributes.cover.data.attributes.url}`} alt="" />
         </a>
       </Link>
     </div>

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Layout from '../../components/layout/Layout'
 import ImageProject from '../../components/common/ImageProject'
 import Project from '../../components/common/Project'
+import { API_URL } from '../../config/urls'
 
 const ProjectDetail = ({ project }) => {
   let count = 0
@@ -19,7 +20,7 @@ const ProjectDetail = ({ project }) => {
 
   useEffect(() => {
     const projectsReccomended = async (p) => {
-      const { data: projects } = await axios.get(`http://localhost:1337/api/projects/${p}?populate[recommended][populate]=cover`)
+      const { data: projects } = await axios.get(`${API_URL}/api/projects/${p}?populate[recommended][populate]=cover`)
       setRecommended(projects.data.attributes?.recommended.data)
     }
     projectsReccomended(id)
@@ -94,7 +95,7 @@ const ProjectDetail = ({ project }) => {
 
 export const getServerSideProps = async context => {
    try {
-     const { data: project } = await axios.get(`http://localhost:1337/api/projects/${context.query.id}?populate=%2a`)
+     const { data: project } = await axios.get(`${API_URL}/api/projects/${context.query.id}?populate=%2a`)
      return {
        props: {
          project

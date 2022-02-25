@@ -1,9 +1,10 @@
+import { API_URL } from '../../config/urls';
 const ImageProject = ({ grid, url }) => {
-  
+
   return (
     <div className={grid}>
         <a>
-          <img src={`http://localhost:1337${url}`} alt="" />
+          <img src={`${API_URL}${url}`} alt="" />
         </a>
     </div>
   )

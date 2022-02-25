@@ -3,6 +3,7 @@ import axios from "axios"
 import Layout from "../../components/layout/Layout"
 import Project from "../../components/common/Project"
 import classNames from "classnames"
+import { API_URL } from "../../config/urls"
 
 const Projects = ({ projects, countries, type_events }) => {
   const data_projects = projects.data
@@ -159,15 +160,14 @@ const Projects = ({ projects, countries, type_events }) => {
 
 export const getServerSideProps = async (context) => {
   try {
-    // const {data: projects } = await axios.get('http://localhost:1337/api/projects?populate=%2a')
     const { data: projects } = await axios.get(
-      "http://localhost:1337/api/projects?fields[0]=title&populate=cover&populate[0]=country&populate[1]=type_events"
+      `${API_URL}/api/projects?fields[0]=title&populate=cover&populate[0]=country&populate[1]=type_events`
     );
     const { data: countries } = await axios.get(
-      "http://localhost:1337/api/countries?fields[0]=name"
+      `${API_URL}/api/countries?fields[0]=name`
     );
     const { data: type_events } = await axios.get(
-      "http://localhost:1337/api/type-events?fields[0]=name"
+      `${API_URL}/api/type-events?fields[0]=name`
     );
 
     console.log(projects);
