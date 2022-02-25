@@ -1,7 +1,7 @@
 import Project from '../common/Project'
-const useProjects = (data, layout) => {
+const useProjects = (data) => {
   let count = 0
-
+  // console.log(data.length)
   const gridSelectionAll = (indice) => {
     if (indice == 4) return "col-md-12"
     if (indice >= 5 && indice <= 6) return "col-md-6"
@@ -9,17 +9,19 @@ const useProjects = (data, layout) => {
   }
 
   const Projects = () => {
-  return (
-    data.map((project, i) => {
-      count++
-      count = count > 7 ? 1 : count
-      let grid = gridSelectionAll(count)
-      return (
-        <Project key={project.id} project={project} grid={grid}/>
+    return (
+      data.map((project, i) => {
+
+        count++
+        count = count  > 7 ? 1 : count
+        let grid = gridSelectionAll(count)
+        console.log(grid)
+        return (
+          <Project key={project.id} project={project} grid={grid} />
+        )
+      }
       )
-    }
     )
-  )
   }
 
   return {

@@ -59,11 +59,46 @@ import Layout from "../components/layout/Layout"
       </section>
       <section className="work-grid">
         <div className="row">
-          <Project grid="col-md-6"/>
-          <Project grid="col-md-6"/>
-          <Project grid="col-md-4"/>
-          <Project grid="col-md-4"/>
-          <Project grid="col-md-4"/>
+          <div className="col-md-6">
+            <div className="title-project">
+              <h4>Name Project</h4>
+            </div>
+            <a href="#">
+              <img src="https://via.placeholder.com/960x656" alt="" />
+            </a>
+          </div>
+          <div className="col-md-6">
+            <div className="title-project">
+              <h4>Name Project</h4>
+            </div>
+            <a href="#">
+              <img src="https://via.placeholder.com/960x656" alt="" />
+            </a>
+          </div>
+          <div className="col-md-4">
+            <div className="title-project">
+              <h4>Name Project</h4>
+            </div>
+            <a href="#">
+              <img src="https://via.placeholder.com/960x656" alt="" />
+            </a>
+          </div>
+          <div className="col-md-4">
+            <div className="title-project">
+              <h4>Name Project</h4>
+            </div>
+            <a href="#">
+              <img src="https://via.placeholder.com/960x656" alt="" />
+            </a>
+          </div>
+          <div className="col-md-4">
+            <div className="title-project">
+              <h4>Name Project</h4>
+            </div>
+            <a href="#">
+              <img src="https://via.placeholder.com/960x656" alt="" />
+            </a>
+          </div>
         </div>
       </section>
     </Layout>

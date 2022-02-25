@@ -195,12 +195,19 @@ header .menu-logo .col-md-3 {
 }
 
 .work-grid .row div{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .work-grid .col-md-3{
   padding-right: 8px;
   padding-left: 8px;
+  height: 300px;
+}
+
+.work-grid .col-md-3 img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .work-grid .col-md-4 {
@@ -440,6 +447,7 @@ footer .icon-f {
   text-align: center;
 }
 .filters .option-general {
+  cursor: pointer;
   padding: 25px 90px;
   margin: 0 30px;
   display: inline-block;
@@ -479,4 +487,43 @@ footer .icon-f {
 }
 .filters .filters-menu a:hover{
   color: #3a5999;
+}
+.title-one {
+  padding: 45px 0;
+  border-bottom: 1px solid #1a93a0;
+}
+.title-one h4 {
+  color: #3a5999;
+  font-size: 24px;
+  font-family: "Lemon Medium";
+  margin: 0;
+  padding-top: 20px;
+}
+.title-one p {
+  color: #3f3f3f;
+  font-family: "Avenir Regular";
+  font-size: 16px;
+}
+.description {
+  padding: 60px 0;
+}
+.description h3 {
+  font-family: "Avenir Bold";
+  font-size: 24px;
+  margin: 0;
+}
+.description p {
+  color: #3f3f3f;
+  font-family: "Avenir Regular";
+  font-size: 16px;
+}
+.recomended{
+  padding: 80px 45px;
+}
+.recomended h3{
+  color: #3a5999;
+  font-size: 24px;
+  font-family: "Lemon Medium";
+  margin: 0 0 25px 0;
+  padding-top: 20px;
 }
