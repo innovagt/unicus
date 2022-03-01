@@ -8,7 +8,7 @@ const Layout = ({ children, nav = true, title="Unicus" }) => {
   return (
     <>
       <Head>
-       <title>{title}</title>
+       <title>{title} | Unicus</title>
       </Head>
       <Navbar absolute={nav} />
       {children}

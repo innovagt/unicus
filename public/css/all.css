@@ -194,17 +194,17 @@ header .menu-logo .col-md-3 {
   padding: 45px;
 }
 
-.work-grid .row div{
+.work-grid .row div {
   margin-bottom: 10px;
 }
 
-.work-grid .col-md-3{
+.work-grid .col-md-3 {
   padding-right: 8px;
   padding-left: 8px;
   height: 300px;
 }
 
-.work-grid .col-md-3 img{
+.work-grid .col-md-3 img {
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -232,30 +232,7 @@ header .menu-logo .col-md-3 {
   width: 100%;
   object-fit: cover;
 }
-.work-grid .col-md-3:hover img {
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
-.work-grid .col-md-4:hover img {
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
-.work-grid .col-md-6:hover img {
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
+
 .work-grid img {
   width: 100%;
   transition: all 0.3s ease;
@@ -264,19 +241,33 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
 .work-grid .col-md-12 {
   height: 650px;
   overflow: hidden;
   padding: 7px;
 }
-.work-grid .col-md-12:hover img {
-  opacity: 0.8;
+
+.work-grid .col-md-12:hover img,
+.work-grid .col-md-6:hover img,
+.work-grid .col-md-4:hover img,
+.work-grid .col-md-3:hover img {
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
+.work-grid .col-md-12:hover .title-project,
+.work-grid .col-md-6:hover .title-project,
+.work-grid .col-md-4:hover .title-project,
+.work-grid .col-md-3:hover .title-project {
+  background-color: #ffffff;
+  padding: 20px 35px;
+  border-right: 2px solid #018075;
+}
+
 .about {
   position: relative;
   height: 100vh;
@@ -294,8 +285,8 @@ header .menu-logo .col-md-3 {
   left: 0;
   z-index: 1;
 }
-.about-text h2 ,
-.title-text{
+.about-text h2,
+.title-text {
   font-family: "Lemon Medium";
   font-size: 48px;
   background: linear-gradient(#008074, #3a5999);
@@ -340,12 +331,18 @@ header .menu-logo .col-md-3 {
   position: absolute;
   left: 0;
   top: 40%;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
 }
 .title-project h4 {
   margin: 0;
   font-family: "Lemon Medium";
   font-size: 12px;
 }
+
 footer {
   background-image: linear-gradient(180deg, #3a5999 0%, #008074 100%);
   padding: 80px 0 35px 0;
@@ -478,14 +475,14 @@ footer .icon-f {
   background-color: #ffffff;
   text-align: left;
 }
-.filters .filters-menu a{
+.filters .filters-menu a {
   color: #3f3f3f;
   font-family: "Lemon Regular";
   font-size: 12px;
   display: block;
   margin-bottom: 25px;
 }
-.filters .filters-menu a:hover{
+.filters .filters-menu a:hover {
   color: #3a5999;
 }
 .title-one {
@@ -517,10 +514,10 @@ footer .icon-f {
   font-family: "Avenir Regular";
   font-size: 16px;
 }
-.recomended{
+.recomended {
   padding: 80px 45px;
 }
-.recomended h3{
+.recomended h3 {
   color: #3a5999;
   font-size: 24px;
   font-family: "Lemon Medium";
