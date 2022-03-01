@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Script from "next/script";
-const Navbar = ({ absolute }) => {
+const Navbar = ({ absolute = false }) => {
   return (
     <>
-      <header style={!absolute ?
+      <header style={absolute ?
         {
           position: "static",
           background: "rgb(0,133,121)",

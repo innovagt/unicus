@@ -30,7 +30,7 @@ const ProjectDetail = ({ project }) => {
   }, []);
 
   return (
-    <Layout nav={false} title={attributes.title}>
+    <>
       <section className="showcase">
         <video
           className="object-fit onplay"
@@ -99,7 +99,7 @@ const ProjectDetail = ({ project }) => {
           </section>
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

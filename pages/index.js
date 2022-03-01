@@ -2,10 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Project from "../components/common/Project";
 import Layout from "../components/layout/Layout"
+import Head from "next/head";
 
  const Home = () => {
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Unicus</title>
+      </Head>
       <section className="showcase">
         <div className="overlay">
           <div className="text-showcase">
@@ -101,7 +105,7 @@ import Layout from "../components/layout/Layout"
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
 

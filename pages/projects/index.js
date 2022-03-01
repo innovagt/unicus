@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import axios from "axios";
 import Layout from "../../components/layout/Layout";
 import Project from "../../components/common/Project";
@@ -89,7 +90,10 @@ const Projects = ({ projects, countries, type_events }) => {
   };
 
   return (
-    <Layout nav={false} title="Projects">
+    <>
+      <Head>
+        <title>Projects | Unicus </title>
+      </Head>
       <section className="filters" style={{ position: "relative" }}>
         <div className="container-in">
           <a
@@ -177,7 +181,7 @@ const Projects = ({ projects, countries, type_events }) => {
           })}
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 
