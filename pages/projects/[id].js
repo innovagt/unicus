@@ -1,15 +1,23 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Layout from "../../components/layout/Layout";
+import React, { useEffect, useState } from "react";
+import Head from "next/head"
+import dynamic from "next/dynamic";
+import ReactMarkdown from "react-markdown";
 import ImageProject from "../../components/common/ImageProject";
 import Project from "../../components/common/Project";
 import Fancybox from "../../components/common/fancybox.js";
 import { API_URL } from "../../config/urls";
+import 'animate.css'
+
+const DynamicComponentWithNoSSR = dynamic(
+  () => import("../../components/common/wowComponent"),
+  { ssr: false }
+)
 
 const ProjectDetail = ({ project }) => {
   let count = 0;
   const { id, attributes } = project.data;
+  const { description } = attributes
   const { data: galleryProject } = attributes.gallery;
   const [recommended, setRecommended] = useState([]);
 
@@ -31,12 +39,16 @@ const ProjectDetail = ({ project }) => {
 
   return (
     <>
-      <section className="showcase">
+      <Head>
+        <title>{attributes.title} | Unicus</title>
+      </Head>
+      <DynamicComponentWithNoSSR />
+      <section className="showcase showcase-p">
         <video
-          className="object-fit onplay"
+          className="object-fit onplay animate__animated animate__fadeIn"
           data-width="640"
           data-height="360"
-          playsinline=""
+          playsInline=""
           preload=""
           loop=""
           muted=""
@@ -44,6 +56,7 @@ const ProjectDetail = ({ project }) => {
         >
           <source
             src="https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+            // src="https://player.vimeo.com/video/615482500?h=1b609cf8b0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
             type="video/mp4"
           />
         </video>
@@ -52,10 +65,10 @@ const ProjectDetail = ({ project }) => {
         <div className="container-in">
           <div className="title-one">
             <div className="row">
-              <div className="col-md-9">
+              <div className="col-md-9 wow fadeInLeft">
                 <h4>{attributes.title}</h4>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 wow fadeInRight">
                 <p>País: {attributes.country.data.attributes.name} </p>
                 <p>Fecha de evento: {attributes.date_event}</p>
               </div>
@@ -66,21 +79,21 @@ const ProjectDetail = ({ project }) => {
       <section className="description">
         <div className="container-in">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 wow fadeInUp">
               <h3>{attributes.subtitle}</h3>
             </div>
-            <div className="col-md-6">{attributes.description}</div>
+            <div className="col-md-6 wow fadeInUp"><ReactMarkdown>{description}</ReactMarkdown></div>
           </div>
         </div>
       </section>
       <section className="work-grid">
         <div className="row">
-          <Fancybox options={{infinite: false}}>
+          <Fancybox options={{ infinite: false }}>
             {galleryProject.map(({ id, attributes }) => {
               count++;
               count = count > 7 ? 1 : count;
               let grid = gridSelectionProject(count);
-              return <ImageProject key={id} url={attributes.url} grid={grid} />;
+              return <ImageProject key={id} url={attributes.url} grid={grid} animate={" wow fadeInUp"} />;
             })}
           </Fancybox>
         </div>
@@ -89,11 +102,11 @@ const ProjectDetail = ({ project }) => {
         <>
           <section className="work-grid recomended">
             <div className="row">
-              <div className="text-center">
+              <div className="text-center wow fadeInUp">
                 <h3>Proyectos Recomendados</h3>
               </div>
               {recommended.map((project) => (
-                <Project key={project.id} project={project} />
+                <Project key={project.id} project={project} animate={" wow fadeInUp"} />
               ))}
             </div>
           </section>

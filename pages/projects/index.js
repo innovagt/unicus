@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import axios from "axios";
-import Layout from "../../components/layout/Layout";
+import "animate.css";
 import Project from "../../components/common/Project";
 import classNames from "classnames";
 import { API_URL } from "../../config/urls";
@@ -28,6 +28,8 @@ const Projects = ({ projects, countries, type_events }) => {
   };
 
   useEffect(() => {
+    // setFiltradas([])
+    console.log("useEffect - pase por acá");
     if (filters.length == 0) {
       console.log("filtrando todos");
       setProjects(data_projects);
@@ -87,6 +89,7 @@ const Projects = ({ projects, countries, type_events }) => {
     filters[0]["typeFil"] == typeFil && filters[0]["id"] == idFilter
       ? setFilters([])
       : setFilters([{ typeFil, id: idFilter, option: filterName }]);
+
   };
 
   return (
@@ -97,19 +100,32 @@ const Projects = ({ projects, countries, type_events }) => {
       <section className="filters" style={{ position: "relative" }}>
         <div className="container-in">
           <a
-            className={classNames("option-general", {
-              active: filters.length == 0,
-            })}
-            onClick={() => setFilters([])}
+            className={classNames(
+              "option-general",
+              {
+                active: filters.length == 0,
+              },
+              "animate__animated animate__fadeInDown"
+            )}
+            onClick={() => {
+              setFilters([]);
+              setDpFilterCountry("none");
+              setDpFilterType("none");
+            }}
           >
             TODOS{" "}
           </a>
           <a
-            href="#"
-            className={classNames("option-general", {
-              active:
-                filters.length > 0 ? filters[0]["typeFil"] == "Country" : false,
-            })}
+            className={classNames(
+              "option-general",
+              {
+                active:
+                  filters.length > 0
+                    ? filters[0]["typeFil"] == "Country"
+                    : false,
+              },
+              "animate__animated animate__fadeInDown"
+            )}
             onClick={() =>
               handleDisplayFilter(
                 dpFilterCountry,
@@ -121,13 +137,16 @@ const Projects = ({ projects, countries, type_events }) => {
             {filters[0]?.typeFil == "Country" ? filters[0]?.option : "País"}
           </a>
           <a
-            href="#"
-            className={classNames("option-general", {
-              active:
-                filters.length > 0
-                  ? filters[0]["typeFil"] == "TypeEvent"
-                  : false,
-            })}
+            className={classNames(
+              "option-general",
+              {
+                active:
+                  filters.length > 0
+                    ? filters[0]["typeFil"] == "TypeEvent"
+                    : false,
+              },
+              "animate__animated animate__fadeInDown"
+            )}
             onClick={() =>
               handleDisplayFilter(
                 dpFilterType,
@@ -136,49 +155,61 @@ const Projects = ({ projects, countries, type_events }) => {
               )
             }
           >
-            {filters[0]?.typeFil == "TypeEvent" ? filters[0]?.option : "TIPO DE EVENTO"}
+            {filters[0]?.typeFil == "TypeEvent"
+              ? filters[0]?.option
+              : "TIPO DE EVENTO"}
           </a>
         </div>
-        <div className="filters-menu" style={{ display: dpFilterCountry }}>
-          <div className="container-in">
-            <div className="row">
-              {allCountries.map(({ id, attributes }) => {
-                return (
-                  <div className="col-md-3" key={id}>
-                    <a id={id} onClick={(e) => handlerFilter(e, "Country")}>
-                      {attributes.name}
-                    </a>
-                  </div>
-                );
-              })}
+        <div className="container-menu-filter">
+          <div
+            className="filters-menu"
+            style={{
+              display: dpFilterCountry,
+            }}
+          >
+            <div className="container-in">
+              <div className="row">
+                {allCountries.map(({ id, attributes }) => {
+                  return (
+                    <div className="col-md-3" key={id}>
+                      <a id={id} onClick={(e) => handlerFilter(e, "Country")}>
+                        {attributes.name}
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="filters-menu" style={{ display: dpFilterType }}>
-          <div className="container-in">
-            <div className="row">
-              {allTypeEvents.map(({ id, attributes }) => {
-                return (
-                  <div className="col-md-3" key={id}>
-                    <a id={id} onClick={(e) => handlerFilter(e, "TypeEvent")}>
-                      {attributes.name}
-                    </a>
-                  </div>
-                );
-              })}
+          <div className="filters-menu" style={{ display: dpFilterType }}>
+            <div className="container-in">
+              <div className="row">
+                {allTypeEvents.map(({ id, attributes }) => {
+                  return (
+                    <div className="col-md-3" key={id}>
+                      <a id={id} onClick={(e) => handlerFilter(e, "TypeEvent")}>
+                        {attributes.name}
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </section>
       <section className="work-grid">
         <div className="row">
-          {filtradas.map((project) => {
-            count++;
-            count = count > 7 ? 1 : count;
-            let grid = gridSelectionAll(count);
-            console.log(grid);
-            return <Project key={project.id} project={project} grid={grid} />;
-          })}
+          {
+            filtradas.length > 0 ?
+              (filtradas.map((project) => {
+                count++;
+                count = count > 7 ? 1 : count;
+                let grid = gridSelectionAll(count);
+                console.log(grid);
+                return <Project key={project.id} project={project} grid={grid} />;
+              })) : (<h1 className="projectNull wow fadeIn">No se encontro ningun proyecto</h1>)
+          }
         </div>
       </section>
     </>

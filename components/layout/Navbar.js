@@ -1,15 +1,17 @@
 import Link from "next/link";
 import Script from "next/script";
+import 'animate.css'
+
 const Navbar = ({ absolute = false }) => {
   return (
     <>
       <header style={absolute ?
         {
-          position: "static",
+          position: "sticky",
           background: "rgb(0,133,121)",
           background: "linear-gradient(114deg, rgba(0,133,121,1) 0%, rgba(29,108,135,1) 50%, rgba(54,91,151,1) 100%)"
         } : {}
-      }>
+      } className="animate__animated animate__fadeInUp" >
         <Script src="/js/jquery.js" strategy="beforeInteractive" />
         <Script src="/js/bootstrap.js" strategy="beforeInteractive" />
         <Script src="/js/wow.min.js" strategy="beforeInteractive" />
@@ -34,9 +36,9 @@ const Navbar = ({ absolute = false }) => {
         /> */}
         <div className="menu-logo">
           <div className="row">
-            <div className="col-md-3 text-center">
+            <div className="col-md-3 text-center animate__animated animate__fadeInUp">
               <Link href="/">
-                <a>
+                <a >
                   <img src="/img/logo.svg" alt="" />
                 </a>
               </Link>
@@ -64,21 +66,21 @@ const Navbar = ({ absolute = false }) => {
                     id="bs-example-navbar-collapse-1"
                   >
                     <ul className="nav navbar-nav">
-                      <li className="active">
+                      <li className="animate__animated animate__fadeInUp">
                         <Link href="/">
-                          <a href="#">
+                          <a>
                             Inicio <span className="sr-only">(current)</span>
                           </a>
                         </Link>
                       </li>
-                      <li>
+                      <li className="animate__animated animate__fadeInUp">
                         <Link href="/projects">
                           <a>Proyectos</a>
                         </Link>
                       </li>
-                      <li>
+                      <li className="animate__animated animate__fadeInUp">
                         <Link href="/weare" as="/WeAre">
-                          <a href="#">We Are</a>
+                          <a>We Are</a>
                         </Link>
                       </li>
                     </ul>

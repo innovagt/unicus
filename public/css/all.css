@@ -73,6 +73,48 @@ header .menu-logo .col-md-3 {
 .showcase {
   position: relative;
 }
+
+.showcase-p {
+  height: 90vh;
+  background: rgba(0, 128, 115, 0.8);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 0.8)),
+    color-stop(100%, rgba(58, 90, 153, 0.81))
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -o-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -ms-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008073',endColorstr='#3a5a99',GradientType=1);
+}
+
+.showcase-p video {
+  object-fit: cover;
+}
+
 .showcase video {
   width: 100%;
   height: 100%;
@@ -140,6 +182,7 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
 .text-showcase a:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
   background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
@@ -205,6 +248,8 @@ header .menu-logo .col-md-3 {
 }
 
 .work-grid .col-md-3 img {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -215,18 +260,16 @@ header .menu-logo .col-md-3 {
   padding: 7px;
   height: 425px;
 }
-.work-grid .col-md-4 img {
-  min-height: 100%;
-  max-height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+
 .work-grid .col-md-6 {
   overflow: hidden;
   padding: 7px;
   height: 665px;
 }
-.work-grid .col-md-6 img {
+.work-grid .col-md-6 img,
+.work-grid .col-md-4 img {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
   min-height: 100%;
   max-height: 100%;
   width: 100%;
@@ -252,6 +295,7 @@ header .menu-logo .col-md-3 {
 .work-grid .col-md-6:hover img,
 .work-grid .col-md-4:hover img,
 .work-grid .col-md-3:hover img {
+  transform: scale(1.03);
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -300,7 +344,8 @@ header .menu-logo .col-md-3 {
   font-size: 18px;
   color: #3f3f3f;
 }
-.about-text a {
+.about-text a,
+.btn-unicus {
   font-family: "Lemon Medium";
   font-size: 12px;
   color: #3f3f3f;
@@ -314,7 +359,9 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
-.about-text a:hover {
+
+.about-text a:hover,
+.btn-unicus:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
   background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
   color: #ffffff;
@@ -331,6 +378,7 @@ header .menu-logo .col-md-3 {
   position: absolute;
   left: 0;
   top: 40%;
+  z-index: 9;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -464,14 +512,23 @@ footer .icon-f {
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
   border-color: transparent;
 }
+.container-menu-filter {
+  position: relative;
+}
 
 .filters .filters-menu {
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
   padding: 30px;
   background-color: #ffffff;
   text-align: left;
+  position: absolute;
+  width: 100%;
+  z-index: 9;
+  margin-top: 5px;
 }
+
 .filters .filters-menu a {
+  cursor: pointer;
   color: #3f3f3f;
   font-family: "Lemon Regular";
   font-size: 12px;
@@ -519,4 +576,13 @@ footer .icon-f {
   font-family: "Lemon Medium";
   margin: 0 0 25px 0;
   padding-top: 20px;
+}
+
+.projectNull {
+  color: #1b2b4d;
+  font-size: 3rem;
+  font-family: "Lemon Medium";
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
 }

@@ -1,19 +1,18 @@
-import { API_URL } from '../../config/urls';
 import Image from 'next/image'
+import dynamic from 'next/dynamic';
 import styled from "styled-components"
+import 'animate.css'
 
 const myLoader = ({ src, width, quality }) => {
-  return `${API_URL}${src}?w=${width}&q=${quality || 75}`
+  return `${src}?w=${width}&q=${quality || 75}`
 }
 
 const myLoaderBlur = ({ src, width, quality }) => {
-  return `${API_URL}${src}?w=${width}&q=${quality || 10}`
+  return `${src}?w=${width}&q=${quality || 10}`
 }
 
 
 const ImageWrap = styled.div`
-  position: relative;
-  
   img{
     padding: 0 5px !important;
   }
@@ -24,14 +23,22 @@ const ImageWrap = styled.div`
   }
 
 `
+const DynamicComponentWithNoSSR = dynamic(
+  () => import("../../components/common/wowComponent"),
+  { ssr: false }
+)
 
-const ImageProject = ({ grid, url }) => {
+
+const ImageProject = ({ grid, url, animate = ' animate__animated animate__fadeInUP'}) => {
   return (
-    <ImageWrap className={grid}>
-      <a data-fancybox="gallery" href={`${API_URL}${url}`}>
-        <Image  src={url} loader={myLoader} layout="fill" alt="" blurDataURL={myLoaderBlur} placeholder="blur" />
-      </a>
-    </ImageWrap>
+    <>
+      <DynamicComponentWithNoSSR />
+      <ImageWrap className={grid + animate } >
+        <a data-fancybox="gallery" href={`${url}`}>
+          <Image  src={url} loader={myLoader} layout="fill" alt="" blurDataURL={myLoaderBlur} placeholder="blur" />
+        </a>
+      </ImageWrap>
+    </>
   )
 }
 
