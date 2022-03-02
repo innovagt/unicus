@@ -40,6 +40,7 @@ const Projects = ({ projects, countries, type_events }) => {
       if (filters[0]["typeFil"] == "TypeEvent") {
         console.log("Filtrando por Tipo de evento");
         const fil = allProjects.filter((project) => {
+          if (!(project?.attributes?.type_event?.data)) return;
           const t = project.attributes.type_events.data;
           const filterType = [];
           if (t.length > 0) {
@@ -53,6 +54,7 @@ const Projects = ({ projects, countries, type_events }) => {
         console.log("Filtrando por pais");
         console.log(filters);
         const fil = allProjects.filter((project) => {
+          if (!(project?.attributes?.country?.data)) return;
           const country = project.attributes.country.data;
           console.log(country);
           const res = +country.id == +filters[0]["id"];
