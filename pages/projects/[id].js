@@ -69,7 +69,7 @@ const ProjectDetail = ({ project }) => {
                 <h4>{attributes.title}</h4>
               </div>
               <div className="col-md-3 wow fadeInRight">
-                <p>País: {attributes.country.data.attributes.name} </p>
+                <p>País: {attributes?.country?.data?.attributes?.name && '----'} </p>
                 <p>Fecha de evento: {attributes.date_event}</p>
               </div>
             </div>

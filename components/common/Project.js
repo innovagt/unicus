@@ -16,6 +16,7 @@ const myLoaderBlur = ({ src, width, quality }) => {
 const ImageWrap = styled.div`
   img{
     padding: 0 8px !important;
+      object-fit: cover !important;
   }
 
   img:hover{
