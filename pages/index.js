@@ -2,9 +2,11 @@ import Link from "next/link";
 import Project from "../components/common/Project";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import "animate.css";
 import axios from "axios";
+import configLanguajeWeb from "../config/language"
 
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/urls";
@@ -20,7 +22,11 @@ const ParticlesWithNoSSR = dynamic(
 );
 
 const Home = ({ projects, configWeb }) => {
-  const { descHome, facebook, instagram, phone, subtitleHome, titleHome, video_director, youtube } = configWeb.data.attributes
+  let router = useRouter();
+
+  const localeAttributes = configWeb.data.attributes.localizations.data[0]?.attributes.locale == router.locale ? configWeb.data.attributes.localizations.data[0].attributes : configWeb.data.attributes;
+
+  const { descHome, facebook, instagram, phone, subtitleHome, titleHome, video_director, youtube } = localeAttributes
   const data_projects = projects.data;
   let count = 0;
 
@@ -30,6 +36,7 @@ const Home = ({ projects, configWeb }) => {
     if (indice > 2) return "col-md-4";
     return "col-md-6";
   };
+
 
   useEffect(() => {
     setProjects(data_projects);
@@ -53,7 +60,8 @@ const Home = ({ projects, configWeb }) => {
             </div>
             <Link href="/projects">
               <a className="animate__animated animate__fadeInUp">
-                Ver proyectos
+                {/* Ver proyectos */}
+                {configLanguajeWeb.buttonProjects[`${router.locale}`]}
               </a>
             </Link>
           </div>
@@ -118,7 +126,7 @@ const Home = ({ projects, configWeb }) => {
               <ReactMarkdown>{descHome}</ReactMarkdown>
             </div>
             <Link href="/weare">
-              <a className="wow fadeInUp">WE ARE</a>
+              <a className="wow fadeInUp">{configLanguajeWeb.buttonWeAre[`${router.locale}`]}</a>
             </Link>
           </div>
         </div>
@@ -129,20 +137,20 @@ const Home = ({ projects, configWeb }) => {
             count++;
             count = count > 5 ? 1 : count;
             let grid = gridSelectionHome(count);
-            console.log(grid);
             return (
               <Project
                 key={project.id}
                 project={project}
                 grid={grid}
                 animate={" wow fadeInUp"}
+                locale={router.locale}
               />
             );
           })}
         </div>
         <div className="container-in" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Link href="/projects">
-            <a className="btn-unicus wow fadeInUp">Ver más proyectos</a>
+            <a className="btn-unicus wow fadeInUp">{configLanguajeWeb.buttonProjects[`${router.locale}`]}</a>
           </Link>
         </div>
       </section>
@@ -154,12 +162,11 @@ const Home = ({ projects, configWeb }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?sort=date_event:DESC&pagination[start]=0&pagination[limit]=5&fields[0]=title&populate=cover`
+      `${API_URL}/api/projects?sort=date_event:DESC&pagination[start]=0&pagination[limit]=5&fields[0]=title&fields[1]=locale&populate=cover&populate=localizations`
     );
 
-    const { data: configWeb } = await axios.get(`${API_URL}/api/configuration`);
+    const { data: configWeb } = await axios.get(`${API_URL}/api/configuration?populate=%2a`);
 
-    // console.log(projects);
     return {
       props: {
         projects,

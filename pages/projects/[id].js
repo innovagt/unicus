@@ -1,25 +1,29 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Head from "next/head"
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import ReactMarkdown from "react-markdown";
 import ImageProject from "../../components/common/ImageProject";
 import Project from "../../components/common/Project";
 import Fancybox from "../../components/common/fancybox.js";
+import { pageProject } from "../../config/language";
 import { API_URL } from "../../config/urls";
-import 'animate.css'
+import "animate.css";
+import { useRouter } from "next/router";
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import("../../components/common/wowComponent"),
   { ssr: false }
-)
+);
 
-const ProjectDetail = ({ project }) => {
+const ProjectDetail = ({ project, recommendedP, countryP }) => {
   let count = 0;
+  const router = useRouter();
   const { id, attributes } = project.data;
-  const { description } = attributes
+  const { description } = attributes;
   const { data: galleryProject } = attributes.gallery;
-  const [recommended, setRecommended] = useState([]);
+  const recommended = recommendedP.data.attributes?.recommended.data;
+  const country = countryP.data.attributes?.country.data;
 
   const gridSelectionProject = (indice) => {
     if (indice >= 5 && indice <= 6) return "col-md-6";
@@ -27,20 +31,16 @@ const ProjectDetail = ({ project }) => {
     return "col-md-3";
   };
 
-  useEffect(() => {
-    const projectsReccomended = async (p) => {
-      const { data: projects } = await axios.get(
-        `${API_URL}/api/projects/${p}?populate[recommended][populate]=cover`
-      );
-      setRecommended(projects.data.attributes?.recommended.data);
-    };
-    projectsReccomended(id);
-  }, []);
+  let titleProject =
+    attributes.locale == router.locale ||
+      !attributes.localizations.data[0]?.attributes.title
+      ? attributes.title
+      : attributes.localizations.data[0].attributes.title;
 
   return (
     <>
       <Head>
-        <title>{attributes.title} | Unicus</title>
+        <title>{titleProject} | Unicus</title>
       </Head>
       <DynamicComponentWithNoSSR />
       <section className="showcase showcase-p">
@@ -55,7 +55,11 @@ const ProjectDetail = ({ project }) => {
           autoPlay
         >
           <source
-            src={attributes.video_vimeo ? attributes.video_vimeo : "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"}
+            src={
+              attributes.video_vimeo
+                ? attributes.video_vimeo
+                : "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+            }
             type="video/mp4"
           />
         </video>
@@ -65,11 +69,20 @@ const ProjectDetail = ({ project }) => {
           <div className="title-one">
             <div className="row">
               <div className="col-md-9 wow fadeInLeft">
-                <h4>{attributes.title}</h4>
+                <h4>{titleProject}</h4>
               </div>
               <div className="col-md-3 wow fadeInRight">
-                <p>País: {attributes?.country?.data?.attributes?.name ? attributes.country.data.attributes.name : "-----"} </p>
-                <p>Fecha de evento: {attributes.date_event}</p>
+                <p>
+                  {pageProject.country[`${router.locale}`]}:{" "}
+                  {
+                    country == null ? '------' : (
+                      country.attributes.locale == router.locale ||
+                        !country.attributes.localizations.data[0]?.attributes.name
+                        ? country.attributes.name
+                        : country.attributes.localizations.data[0].attributes.name
+                    )}
+                </p>
+                <p>{pageProject.dateEvent[`${router.locale}`]}: {attributes.date_event}</p>
               </div>
             </div>
           </div>
@@ -79,9 +92,21 @@ const ProjectDetail = ({ project }) => {
         <div className="container-in">
           <div className="row">
             <div className="col-md-6 wow fadeInUp">
-              <h3>{attributes.subtitle}</h3>
+              <h3>
+                {attributes.locale == router.locale ||
+                  !attributes.localizations.data[0]?.attributes.subtitle
+                  ? attributes.subtitle
+                  : attributes.localizations.data[0].attributes.subtitle}
+              </h3>
             </div>
-            <div className="col-md-6 wow fadeInUp"><ReactMarkdown>{description}</ReactMarkdown></div>
+            <div className="col-md-6 wow fadeInUp">
+              <ReactMarkdown>
+                {attributes.locale == router.locale ||
+                  !attributes.localizations.data[0]?.attributes.description
+                  ? attributes.description
+                  : attributes.localizations.data[0].attributes.description}
+              </ReactMarkdown>
+            </div>
           </div>
         </div>
       </section>
@@ -92,7 +117,14 @@ const ProjectDetail = ({ project }) => {
               count++;
               count = count > 7 ? 1 : count;
               let grid = gridSelectionProject(count);
-              return <ImageProject key={id} url={attributes.url} grid={grid} animate={" wow fadeInUp"} />;
+              return (
+                <ImageProject
+                  key={id}
+                  url={attributes.url}
+                  grid={grid}
+                  animate={" wow fadeInUp"}
+                />
+              );
             })}
           </Fancybox>
         </div>
@@ -102,10 +134,15 @@ const ProjectDetail = ({ project }) => {
           <section className="work-grid recomended">
             <div className="row">
               <div className="text-center wow fadeInUp">
-                <h3>Proyectos Recomendados</h3>
+                <h3>{pageProject.projectRecommended[`${router.locale}`]}</h3>
               </div>
               {recommended.map((project) => (
-                <Project key={project.id} project={project} animate={" wow fadeInUp"} />
+                <Project
+                  key={project.id}
+                  project={project}
+                  animate={" wow fadeInUp"}
+                  locale={router.locale}
+                />
               ))}
             </div>
           </section>
@@ -120,9 +157,17 @@ export const getServerSideProps = async (context) => {
     const { data: project } = await axios.get(
       `${API_URL}/api/projects/${context.query.id}?populate=%2a`
     );
+    const { data: recommendedP } = await axios.get(
+      `${API_URL}/api/projects/${context.query.id}?populate[recommended][populate]=cover&populate[recommended][populate]=localizations&populate[country][populate]=localizations`
+    );
+    const { data: countryP } = await axios.get(
+      `${API_URL}/api/projects/${context.query.id}?populate[country][populate]=localizations`
+    );
     return {
       props: {
         project,
+        countryP,
+        recommendedP,
       },
     };
   } catch (error) {

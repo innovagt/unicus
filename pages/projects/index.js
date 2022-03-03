@@ -5,6 +5,9 @@ import "animate.css";
 import Project from "../../components/common/Project";
 import classNames from "classnames";
 import { API_URL } from "../../config/urls";
+import configLanguajeWeb from "../../config/language"
+import { useRouter } from "next/router";
+import { route } from "next/dist/server/router";
 
 const Projects = ({ projects, countries, type_events }) => {
   const data_projects = projects.data;
@@ -27,20 +30,18 @@ const Projects = ({ projects, countries, type_events }) => {
     return "col-md-4";
   };
 
+  const router = useRouter()
+
   useEffect(() => {
-    // setFiltradas([])
-    console.log("useEffect - pase por acá");
     if (filters.length == 0) {
-      console.log("filtrando todos");
       setProjects(data_projects);
       setAllcountries(data_countries);
       setAllTypeEvents(data_typeEvents);
       setFiltradas(data_projects);
     } else {
       if (filters[0]["typeFil"] == "TypeEvent") {
-        console.log("Filtrando por Tipo de evento");
         const fil = allProjects.filter((project) => {
-          if (!(project?.attributes?.type_event?.data)) return;
+          if (!(project?.attributes?.type_events?.data)) return;
           const t = project.attributes.type_events.data;
           const filterType = [];
           if (t.length > 0) {
@@ -51,20 +52,16 @@ const Projects = ({ projects, countries, type_events }) => {
         setFiltradas(fil);
       }
       if (filters[0]["typeFil"] == "Country") {
-        console.log("Filtrando por pais");
-        console.log(filters);
         const fil = allProjects.filter((project) => {
           if (!(project?.attributes?.country?.data)) return;
           const country = project.attributes.country.data;
-          console.log(country);
           const res = +country.id == +filters[0]["id"];
           return res ? project : "";
         });
-        console.log(fil);
         setFiltradas(fil);
       }
     }
-  }, [filters]);
+  }, [filters, router.locale]);
 
   const handleDisplayFilter = (state, display, none) => {
     state == "block" ? display("none") : display("block");
@@ -97,7 +94,7 @@ const Projects = ({ projects, countries, type_events }) => {
   return (
     <>
       <Head>
-        <title>Projects | Unicus </title>
+        <title>{configLanguajeWeb.navProjects[`${router.locale}`]} | Unicus </title>
       </Head>
       <section className="filters" style={{ position: "relative" }}>
         <div className="container-in">
@@ -115,7 +112,7 @@ const Projects = ({ projects, countries, type_events }) => {
               setDpFilterType("none");
             }}
           >
-            TODOS{" "}
+            {configLanguajeWeb.filterAll[`${router.locale}`]}
           </a>
           <a
             className={classNames(
@@ -136,7 +133,7 @@ const Projects = ({ projects, countries, type_events }) => {
               )
             }
           >
-            {filters[0]?.typeFil == "Country" ? filters[0]?.option : "País"}
+            {filters[0]?.typeFil == "Country" ? filters[0]?.option : configLanguajeWeb.filterCountry[`${router.locale}`]}
           </a>
           <a
             className={classNames(
@@ -159,7 +156,7 @@ const Projects = ({ projects, countries, type_events }) => {
           >
             {filters[0]?.typeFil == "TypeEvent"
               ? filters[0]?.option
-              : "TIPO DE EVENTO"}
+              : configLanguajeWeb.filterTypeEvent[`${router.locale}`]}
           </a>
         </div>
         <div className="container-menu-filter">
@@ -175,7 +172,10 @@ const Projects = ({ projects, countries, type_events }) => {
                   return (
                     <div className="col-md-3" key={id}>
                       <a id={id} onClick={(e) => handlerFilter(e, "Country")}>
-                        {attributes.name}
+                        {attributes.locale == router.locale ||
+                          !attributes.localizations.data[0]?.attributes
+                          ? attributes.name
+                          : attributes.localizations.data[0].attributes.name}
                       </a>
                     </div>
                   );
@@ -190,7 +190,10 @@ const Projects = ({ projects, countries, type_events }) => {
                   return (
                     <div className="col-md-3" key={id}>
                       <a id={id} onClick={(e) => handlerFilter(e, "TypeEvent")}>
-                        {attributes.name}
+                        {attributes.locale == router.locale ||
+                          !attributes.localizations.data[0]?.attributes.name
+                          ? attributes.name
+                          : attributes.localizations.data[0].attributes.name}
                       </a>
                     </div>
                   );
@@ -208,9 +211,8 @@ const Projects = ({ projects, countries, type_events }) => {
                 count++;
                 count = count > 7 ? 1 : count;
                 let grid = gridSelectionAll(count);
-                console.log(grid);
-                return <Project key={project.id} project={project} grid={grid} />;
-              })) : (<h1 className="projectNull wow fadeIn">No se encontro ningun proyecto</h1>)
+                return <Project key={project.id} project={project} grid={grid} locale={router.locale} />;
+              })) : (<h1 className="projectNull wow fadeIn">{configLanguajeWeb.nothingProjects[`${router.locale}`]}</h1>)
           }
         </div>
       </section>
@@ -221,16 +223,15 @@ const Projects = ({ projects, countries, type_events }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?fields[0]=title&populate=cover&populate[0]=country&populate[1]=type_events`
+      `${API_URL}/api/projects?fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
     );
     const { data: countries } = await axios.get(
-      `${API_URL}/api/countries?fields[0]=name`
+      `${API_URL}/api/countries?fields[0]=name&fields[1]=locale&populate=localizations`
     );
     const { data: type_events } = await axios.get(
-      `${API_URL}/api/type-events?fields[0]=name`
+      `${API_URL}/api/type-events?fields[0]=name&fields[1]=locale&populate=localizations`
     );
 
-    console.log(projects);
     return {
       props: {
         projects,

@@ -1,5 +1,8 @@
-import React from "react"
+import configLanguajeWeb from "../../config/language"
+import { useRouter } from "next/router";
+
 const Footer = () => {
+  const router = useRouter();
   return (
     <footer>
       <div className="container-in">
@@ -51,16 +54,16 @@ const Footer = () => {
           </div>
         </div>
         <div className="bottomfooter">
-          <p>¿Quieres ser parte de Unicus? </p>
-          <a href="http://unicus.io/formulario/" className="btnone" target="_blank" rel="noreferrer">Únete Ahora</a>
+          <p>{configLanguajeWeb.partUnicus[`${router.locale}`]}</p>
+          <a href="http://unicus.io/formulario/" className="btnone" target="_blank" rel="noreferrer">{configLanguajeWeb.buttonJoin[`${router.locale}`]}</a>
         </div>
         <div className="end">
           <div className="row">
             <div className="col-md-6">
-              <small>©Unicus - Derechos Reservados 2022</small>
+              <small>{configLanguajeWeb.rightsReserved[`${router.locale}`]}</small>
             </div>
             <div className="col-md-6 text-right">
-              <small>Desarrollado por <a target="_blank" rel="noreferrer" href="https://innovate.gt">Innovate</a> </small>
+              <small>{configLanguajeWeb.development[`${router.locale}`]} <a target="_blank" rel="noreferrer" href="https://innovate.gt">Innovate</a> </small>
             </div>
           </div>
         </div>
@@ -70,4 +73,4 @@ const Footer = () => {
   )
 }
 
-export default React.memo(Footer)
+export default Footer
