@@ -4,11 +4,17 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import "animate.css";
 import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/urls";
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import("../components/common/wowComponent"),
+  { ssr: false }
+);
+
+const ParticlesWithNoSSR = dynamic(
+  () => import("../components/common/Particles"),
   { ssr: false }
 );
 
@@ -33,6 +39,7 @@ const Home = ({ projects }) => {
         <title>Unicus</title>
       </Head>
       <DynamicComponentWithNoSSR />
+      <ParticlesWithNoSSR />
       <section className="showcase animate__animated animate__fadeIn">
         <div className="overlay">
           <div className="text-showcase">
@@ -48,10 +55,6 @@ const Home = ({ projects }) => {
             </Link>
           </div>
           <div className="social-nav">
-            {/* <a href="#" target="_blank"><Image  width={25} height={25} src="/img/wt.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/f.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/i.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/yt.svg" alt="" /></a> */}
             <a
               href="#"
               className="animate__animated animate__fadeInRight"
@@ -98,7 +101,9 @@ const Home = ({ projects }) => {
           />
         </video>
       </section>
-      <section className="about" id="BoxArticle">
+      <section className="about">
+        <div id="BoxArticle">
+        </div>
         <div className="about-text">
           <div className="container-in">
             <h2 className="wow fadeInUp">THIS IS UNICUS</h2>
@@ -130,7 +135,7 @@ const Home = ({ projects }) => {
             );
           })}
         </div>
-        <div className="container-in" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <div className="container-in" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Link href="/projects">
             <a className="btn-unicus wow fadeInUp">Ver más proyectos</a>
           </Link>
