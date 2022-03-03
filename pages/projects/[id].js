@@ -55,8 +55,7 @@ const ProjectDetail = ({ project }) => {
           autoPlay
         >
           <source
-            src="https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
-            // src="https://player.vimeo.com/video/615482500?h=1b609cf8b0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            src={attributes.video_vimeo ? atributes.video_vimeo : "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"}
             type="video/mp4"
           />
         </video>
