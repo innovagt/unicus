@@ -48,10 +48,10 @@ const ProjectDetail = ({ project }) => {
           className="object-fit onplay animate__animated animate__fadeIn"
           data-width="640"
           data-height="360"
-          playsInline=""
-          preload=""
-          loop=""
-          muted=""
+          playsInline
+          preload
+          loop
+          muted
           autoPlay
         >
           <source
