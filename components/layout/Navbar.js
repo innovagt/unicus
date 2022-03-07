@@ -27,6 +27,23 @@ const Navbar = ({ absolute = false }) => {
         <Script src="/js/wow.min.js" strategy="beforeInteractive" />
         <Script src="/js/smoothscroll.js" strategy="beforeInteractive" />
         <Script src="/js/custom.js" strategy="beforeInteractive" />
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82015/Projector.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82015/CanvasRenderer.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script src="/js/Particles.js" strategy="beforeInteractive" />
         <div className="menu-logo">
           <div className="row">
             <div className="col-md-3 text-center animate__animated animate__fadeInUp">
@@ -74,7 +91,7 @@ const Navbar = ({ absolute = false }) => {
                         </Link>
                       </li>
                       <li className="animate__animated animate__fadeInUp">
-                        <Link href="/weare" as="/WeAre">
+                        <Link href="/weare">
                           <a>
                             {configLanguajeWeb.navWeAre[`${router.locale}`]}
                           </a>

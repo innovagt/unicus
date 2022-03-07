@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import Project from "../components/common/Project";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -6,7 +7,7 @@ import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import "animate.css";
 import axios from "axios";
-import configLanguajeWeb from "../config/language"
+import configLanguajeWeb from "../config/language";
 
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/urls";
@@ -16,17 +17,25 @@ const DynamicComponentWithNoSSR = dynamic(
   { ssr: false }
 );
 
-const ParticlesWithNoSSR = dynamic(
-  () => import("../components/common/Particles"),
-  { ssr: false }
-);
-
 const Home = ({ projects, configWeb }) => {
   let router = useRouter();
 
-  const localeAttributes = configWeb.data.attributes.localizations.data[0]?.attributes.locale == router.locale ? configWeb.data.attributes.localizations.data[0].attributes : configWeb.data.attributes;
+  const localeAttributes =
+    configWeb.data.attributes.localizations.data[0]?.attributes.locale ==
+      router.locale
+      ? configWeb.data.attributes.localizations.data[0].attributes
+      : configWeb.data.attributes;
 
-  const { descHome, facebook, instagram, phone, subtitleHome, titleHome, video_director, youtube } = localeAttributes
+  const {
+    descHome,
+    facebook,
+    instagram,
+    phone,
+    subtitleHome,
+    titleHome,
+    video_director,
+    youtube,
+  } = localeAttributes;
   const data_projects = projects.data;
   let count = 0;
 
@@ -37,9 +46,14 @@ const Home = ({ projects, configWeb }) => {
     return "col-md-6";
   };
 
+  // const [useScript, setUseScript] = useState(false);
 
   useEffect(() => {
     setProjects(data_projects);
+    if (typeof window !== "undefined") {
+      window.init()
+      window.animate()
+    }
   }, []);
 
   return (
@@ -48,19 +62,14 @@ const Home = ({ projects, configWeb }) => {
         <title>Unicus</title>
       </Head>
       <DynamicComponentWithNoSSR />
-      <ParticlesWithNoSSR />
       <section className="showcase animate__animated animate__fadeIn">
         <div className="overlay">
           <div className="text-showcase">
             <div className="animate__animated animate__fadeInUp">
-              {/* Lorem ipsum <br />
-              dolor
-              <span>sit amet</span> */}
               <ReactMarkdown>{titleHome}</ReactMarkdown>
             </div>
             <Link href="/projects">
               <a className="animate__animated animate__fadeInUp">
-                {/* Ver proyectos */}
                 {configLanguajeWeb.buttonProjects[`${router.locale}`]}
               </a>
             </Link>
@@ -111,14 +120,17 @@ const Home = ({ projects, configWeb }) => {
           autoPlay
         >
           <source
-            src={!video_director ? "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175" : video_director}
+            src={
+              !video_director
+                ? "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+                : video_director
+            }
             type="video/mp4"
           />
         </video>
       </section>
       <section className="about">
-        <div id="BoxArticle">
-        </div>
+        <div id="BoxArticle"></div>
         <div className="about-text">
           <div className="container-in">
             <h2 className="wow fadeInUp">{subtitleHome}</h2>
@@ -126,7 +138,9 @@ const Home = ({ projects, configWeb }) => {
               <ReactMarkdown>{descHome}</ReactMarkdown>
             </div>
             <Link href="/weare">
-              <a className="wow fadeInUp">{configLanguajeWeb.buttonWeAre[`${router.locale}`]}</a>
+              <a className="wow fadeInUp">
+                {configLanguajeWeb.buttonWeAre[`${router.locale}`]}
+              </a>
             </Link>
           </div>
         </div>
@@ -148,13 +162,21 @@ const Home = ({ projects, configWeb }) => {
             );
           })}
         </div>
-        <div className="container-in" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div
+          className="container-in"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Link href="/projects">
-            <a className="btn-unicus wow fadeInUp">{configLanguajeWeb.buttonProjects[`${router.locale}`]}</a>
+            <a className="btn-unicus wow fadeInUp">
+              {configLanguajeWeb.buttonProjects[`${router.locale}`]}
+            </a>
           </Link>
         </div>
       </section>
-
     </>
   );
 };
@@ -165,12 +187,14 @@ export const getServerSideProps = async (context) => {
       `${API_URL}/api/projects?sort=date_event:DESC&pagination[start]=0&pagination[limit]=5&fields[0]=title&fields[1]=locale&populate=cover&populate=localizations`
     );
 
-    const { data: configWeb } = await axios.get(`${API_URL}/api/configuration?populate=%2a`);
+    const { data: configWeb } = await axios.get(
+      `${API_URL}/api/configuration?populate=%2a`
+    );
 
     return {
       props: {
         projects,
-        configWeb
+        configWeb,
       },
     };
   } catch (error) {
