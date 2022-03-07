@@ -9,6 +9,8 @@
 }
 
 body {
+  overflow-x: hidden;
+  width: 100vw;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -32,7 +34,8 @@ header .menu-logo .col-md-3 {
   background-color: transparent;
   border-color: transparent;
 }
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a,
+.in18 {
   color: #ffffff;
   font-size: 16px;
   text-transform: uppercase;
@@ -46,7 +49,8 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-default .navbar-nav > li > a:hover,
+.in18:hover {
   opacity: 0.8;
   color: #ffffff;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -72,10 +76,54 @@ header .menu-logo .col-md-3 {
 }
 .showcase {
   position: relative;
+  height: 100vh;
 }
+
+.showcase-p {
+  height: 90vh;
+  background: rgba(0, 128, 115, 0.8);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 0.8)),
+    color-stop(100%, rgba(58, 90, 153, 0.81))
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -o-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: -ms-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 0.8) 0%,
+    rgba(58, 90, 153, 0.81) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008073',endColorstr='#3a5a99',GradientType=1);
+}
+
+.showcase-p video {
+  object-fit: cover;
+}
+
 .showcase video {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .showcase .overlay .social-nav {
   width: 10%;
@@ -117,12 +165,12 @@ header .menu-logo .col-md-3 {
   text-align: center;
   padding-top: 20%;
 }
-.text-showcase h1 {
+.text-showcase div {
   font-family: "Lemon Bold";
   font-size: 60px;
   color: #ffffff;
 }
-.text-showcase h1 span {
+.text-showcase div strong {
   -webkit-text-stroke: 1px #ffffff;
   color: transparent;
 }
@@ -140,6 +188,7 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
 .text-showcase a:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
   background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
@@ -193,65 +242,87 @@ header .menu-logo .col-md-3 {
 .work-grid {
   padding: 45px;
 }
+
+.work-grid .row div {
+  margin-bottom: 10px;
+}
+
+/* .work-grid .row div a span{
+  background-color: gray !important;
+} */
+
+.work-grid .col-md-3 {
+  padding-right: 8px;
+  padding-left: 8px;
+  height: 300px;
+}
+
+.work-grid .col-md-3 img {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  object-fit: cover !important;
+  height: 100%;
+  width: 100%;
+}
+
 .work-grid .col-md-4 {
   overflow: hidden;
   padding: 7px;
   height: 425px;
 }
-.work-grid .col-md-4 img {
-  min-height: 100%;
-  max-height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+
 .work-grid .col-md-6 {
   overflow: hidden;
   padding: 7px;
   height: 665px;
 }
-.work-grid .col-md-6 img {
+.work-grid .col-md-6 img,
+.work-grid .col-md-4 img {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
   min-height: 100%;
   max-height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: cover !important;
 }
-.work-grid .col-md-4:hover img {
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
-.work-grid .col-md-6:hover img {
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
+
 .work-grid img {
   width: 100%;
+  object-fit: cover !important;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
 .work-grid .col-md-12 {
   height: 650px;
   overflow: hidden;
   padding: 7px;
 }
-.work-grid .col-md-12:hover img {
-  opacity: 0.8;
+
+.work-grid .col-md-12:hover img,
+.work-grid .col-md-6:hover img,
+.work-grid .col-md-4:hover img,
+.work-grid .col-md-3:hover img {
+  transform: scale(1.03);
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
+.work-grid .col-md-12:hover .title-project,
+.work-grid .col-md-6:hover .title-project,
+.work-grid .col-md-4:hover .title-project,
+.work-grid .col-md-3:hover .title-project {
+  background-color: #ffffff;
+  padding: 20px 35px;
+  border-right: 2px solid #018075;
+}
+
 .about {
   position: relative;
   height: 100vh;
@@ -269,7 +340,8 @@ header .menu-logo .col-md-3 {
   left: 0;
   z-index: 1;
 }
-.about-text h2 {
+.about-text h2,
+.title-text {
   font-family: "Lemon Medium";
   font-size: 48px;
   background: linear-gradient(#008074, #3a5999);
@@ -277,12 +349,14 @@ header .menu-logo .col-md-3 {
   color: transparent;
   margin-bottom: 40px;
 }
+
 .about-text p {
   font-family: "Avenir Regular";
   font-size: 18px;
   color: #3f3f3f;
 }
-.about-text a {
+.about-text a,
+.btn-unicus {
   font-family: "Lemon Medium";
   font-size: 12px;
   color: #3f3f3f;
@@ -296,7 +370,9 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
-.about-text a:hover {
+
+.about-text a:hover,
+.btn-unicus:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
   background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
   color: #ffffff;
@@ -313,12 +389,19 @@ header .menu-logo .col-md-3 {
   position: absolute;
   left: 0;
   top: 40%;
+  z-index: 9;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
 }
 .title-project h4 {
   margin: 0;
   font-family: "Lemon Medium";
   font-size: 12px;
 }
+
 footer {
   background-image: linear-gradient(180deg, #3a5999 0%, #008074 100%);
   padding: 80px 0 35px 0;
@@ -381,30 +464,173 @@ footer .icon-f {
   margin: 0 20px 0 0;
   font-size: 14px !important;
   color: #fff;
-  font-family: 'Lemon Regular';
+  font-family: "Lemon Regular";
 }
-.bottomfooter a{
+.bottomfooter a {
   display: inline-block;
-    background: #5285BB;
-    border: 1px solid #5285BB;
-    color: #fff;
-    padding: 20px 50px;
-    font-family: "Lemon Medium";
-    font-size: 14px !important;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -ms-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+  background: #5285bb;
+  border: 1px solid #5285bb;
+  color: #fff;
+  padding: 20px 50px;
+  font-family: "Lemon Medium";
+  font-size: 14px !important;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
-.bottomfooter a:hover{
+.bottomfooter a:hover {
   background-color: transparent;
   border: 1px solid #fff;
 }
-.end small{
-color: #fff;
-font-family: 'Avenir Regular';
+.end small {
+  color: #fff;
+  font-family: "Avenir Regular";
 }
-.end small a{
+.end small a {
   color: #fff;
 }
+
+/*New styles*/
+
+.header-color {
+  position: relative;
+  background: linear-gradient(224.79deg, #3a5999 0%, #008074 100%);
+}
+.filters {
+  padding: 60px;
+  text-align: center;
+}
+.filters .option-general {
+  cursor: pointer;
+  padding: 25px 90px;
+  margin: 0 30px;
+  display: inline-block;
+  color: #3f3f3f;
+  font-family: "Lemon Medium";
+  font-size: 12px;
+  border: 1px solid #3a5999;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+.filters .option-general:hover,
+.filters .option-general.active {
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  border-color: transparent;
+}
+.container-menu-filter {
+  position: relative;
+}
+
+.filters .filters-menu {
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  background-color: #ffffff;
+  text-align: left;
+  position: absolute;
+  width: 100%;
+  z-index: 9;
+  margin-top: 5px;
+}
+
+.filters .filters-menu a {
+  cursor: pointer;
+  color: #3f3f3f;
+  font-family: "Lemon Regular";
+  font-size: 12px;
+  display: block;
+  margin-bottom: 25px;
+}
+.filters .filters-menu a:hover {
+  color: #3a5999;
+}
+.title-one {
+  padding: 45px 0;
+  border-bottom: 1px solid #1a93a0;
+}
+.title-one h4 {
+  color: #3a5999;
+  font-size: 24px;
+  font-family: "Lemon Medium";
+  margin: 0;
+  padding-top: 20px;
+}
+.title-one p {
+  color: #3f3f3f;
+  font-family: "Avenir Regular";
+  font-size: 16px;
+}
+.description {
+  padding: 60px 0;
+}
+.description h3 {
+  font-family: "Avenir Bold";
+  font-size: 24px;
+  margin: 0;
+}
+.description p {
+  color: #3f3f3f;
+  font-family: "Avenir Regular";
+  font-size: 16px;
+}
+.recomended {
+  padding: 80px 45px;
+}
+.recomended h3 {
+  color: #3a5999;
+  font-size: 24px;
+  font-family: "Lemon Medium";
+  margin: 0 0 25px 0;
+  padding-top: 20px;
+}
+
+.projectNull {
+  color: #1b2b4d;
+  font-size: 3rem;
+  font-family: "Lemon Medium";
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+}
+
+#BoxArticle {
+  /* position: absolute; */
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+#BoxArticle canvas {
+  height: 100vh;
+  width: 100vw !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.col-md-3.in18-content {
+  text-align: right;
+  padding: 45px 30px 0px 0px !important;
+}
+
+.in18 {
+  border: none;
+}
+.in18:hover {
+  border: none;
+}
+
+/* @media (min-width: 768px) {
+  .navbar-collapse.collapse {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+} */

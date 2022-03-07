@@ -1,104 +1,205 @@
-import Image from "next/image";
-import Layout from "../components/layout/Layout"
+import Link from "next/link";
+import Script from "next/script";
+import Project from "../components/common/Project";
+import Head from "next/head";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
+import "animate.css";
+import axios from "axios";
+import configLanguajeWeb from "../config/language";
 
- const Home = () => {
+import { useEffect, useState } from "react";
+import { API_URL } from "../config/urls";
+
+const DynamicComponentWithNoSSR = dynamic(
+  () => import("../components/common/wowComponent"),
+  { ssr: false }
+);
+
+const Home = ({ projects, configWeb }) => {
+  let router = useRouter();
+
+  const localeAttributes =
+    configWeb.data.attributes.localizations.data[0]?.attributes.locale ==
+      router.locale
+      ? configWeb.data.attributes.localizations.data[0].attributes
+      : configWeb.data.attributes;
+
+  const {
+    descHome,
+    facebook,
+    instagram,
+    phone,
+    subtitleHome,
+    titleHome,
+    video_director,
+    youtube,
+  } = localeAttributes;
+  const data_projects = projects.data;
+  let count = 0;
+
+  const [allProjects, setProjects] = useState([]);
+
+  const gridSelectionHome = (indice) => {
+    if (indice > 2) return "col-md-4";
+    return "col-md-6";
+  };
+
+  // const [useScript, setUseScript] = useState(false);
+
+  useEffect(() => {
+    setProjects(data_projects);
+    if (typeof window !== "undefined") {
+      window.init()
+      window.animate()
+    }
+  }, []);
+
   return (
-    <Layout>
-      <section className="showcase">
+    <>
+      <Head>
+        <title>Unicus</title>
+      </Head>
+      <DynamicComponentWithNoSSR />
+      <section className="showcase animate__animated animate__fadeIn">
         <div className="overlay">
           <div className="text-showcase">
-            <h1>
-              Lorem ipsum <br />
-              dolor
-              <span>sit amet</span>
-            </h1>
-            <a href="#">Ver proyectos</a>
+            <div className="animate__animated animate__fadeInUp">
+              <ReactMarkdown>{titleHome}</ReactMarkdown>
+            </div>
+            <Link href="/projects">
+              <a className="animate__animated animate__fadeInUp">
+                {configLanguajeWeb.buttonProjects[`${router.locale}`]}
+              </a>
+            </Link>
           </div>
           <div className="social-nav">
-            {/* <a href="#" target="_blank"><Image  width={25} height={25} src="/img/wt.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/f.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/i.svg" alt="" /> </a>
-            <a href="#" target="_blank"><Image  width={25} height={25} src="/img/yt.svg" alt="" /></a> */}
-            <a href="#" target="_blank"><img src="/img/wt.svg" alt="" /> </a>
-            <a href="#" target="_blank"><img src="/img/f.svg" alt="" /> </a>
-            <a href="#" target="_blank"><img src="/img/i.svg" alt="" /> </a>
-            <a href="#" target="_blank"><img src="/img/yt.svg" alt="" /></a>
+            <a
+              href={phone}
+              className="animate__animated animate__fadeInRight"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/img/wt.svg" alt="" />{" "}
+            </a>
+            <a
+              href={facebook}
+              className="animate__animated animate__fadeInRight"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/img/f.svg" alt="" />{" "}
+            </a>
+            <a
+              href={instagram}
+              className="animate__animated animate__fadeInRight"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/img/i.svg" alt="" />{" "}
+            </a>
+            <a
+              href={youtube}
+              className="animate__animated animate__fadeInRight"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/img/yt.svg" alt="" />
+            </a>
           </div>
         </div>
         <video
           className="object-fit onplay"
           data-width="640"
           data-height="360"
-          playsInline=""
-          preload=""
-          loop=""
-          muted=""
+          playsInline
+          preload
+          loop
+          muted
           autoPlay
         >
           <source
-            src="https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+            src={
+              !video_director
+                ? "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+                : video_director
+            }
             type="video/mp4"
           />
         </video>
       </section>
-      <section className="about" id="BoxArticle">
+      <section className="about">
+        <div id="BoxArticle"></div>
         <div className="about-text">
           <div className="container-in">
-            <h2>THIS IS UNICUS</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla sodales bibendum. Integer
-              volutpat magna hendrerit Lorem ipsum dolor si dignissim.</p>
-            <a href="#">WE ARE</a>
+            <h2 className="wow fadeInUp">{subtitleHome}</h2>
+            <div className="wow fadeInUp">
+              <ReactMarkdown>{descHome}</ReactMarkdown>
+            </div>
+            <Link href="/weare">
+              <a className="wow fadeInUp">
+                {configLanguajeWeb.buttonWeAre[`${router.locale}`]}
+              </a>
+            </Link>
           </div>
         </div>
       </section>
       <section className="work-grid">
         <div className="row">
-          <div className="col-md-6">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a routerLink="/project-detail">
-              <img src="https://via.placeholder.com/960x656" alt="" />
+          {allProjects.map((project) => {
+            count++;
+            count = count > 5 ? 1 : count;
+            let grid = gridSelectionHome(count);
+            return (
+              <Project
+                key={project.id}
+                project={project}
+                grid={grid}
+                animate={" wow fadeInUp"}
+                locale={router.locale}
+              />
+            );
+          })}
+        </div>
+        <div
+          className="container-in"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Link href="/projects">
+            <a className="btn-unicus wow fadeInUp">
+              {configLanguajeWeb.buttonProjects[`${router.locale}`]}
             </a>
-          </div>
-          <div className="col-md-6">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-
-            </a>
-          </div>
-          <div className="col-md-4">
-            <div className="title-project">
-              <h4>Name Project</h4>
-            </div>
-            <a href="#">
-              <img src="https://via.placeholder.com/960x656" alt="" />
-            </a>
-          </div>
+          </Link>
         </div>
       </section>
-    </Layout>
+    </>
   );
-}
+};
 
-export default Home
+export const getServerSideProps = async (context) => {
+  try {
+    const { data: projects } = await axios.get(
+      `${API_URL}/api/projects?sort=date_event:DESC&pagination[start]=0&pagination[limit]=5&fields[0]=title&fields[1]=locale&populate=cover&populate=localizations`
+    );
+
+    const { data: configWeb } = await axios.get(
+      `${API_URL}/api/configuration?populate=%2a`
+    );
+
+    return {
+      props: {
+        projects,
+        configWeb,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default Home;
