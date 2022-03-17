@@ -634,3 +634,94 @@ footer .icon-f {
     justify-content: space-evenly;
   }
 } */
+
+/* STYLES SECTION WEARE */
+.weare {
+  padding: 120px 0;
+}
+.weare h1 {
+  font-size: 72px;
+  color: #3d67a4;
+  font-family: "Lemon Bold";
+  padding: 0 105px;
+}
+.weare .col-md-3 {
+  padding: 30px;
+  position: relative;
+  top: 40px;
+}
+.weare .col-md-3 p {
+  font-family: "Avenir Regular";
+  font-size: 14px;
+}
+.weare .col-md-9 {
+  padding: 0;
+}
+.weare .col-md-9::after {
+  content: "";
+  width: 100%;
+  border: 1px solid #1a93a0;
+  height: 275px;
+  bottom: -25px;
+  left: -25px;
+  position: absolute;
+  display: block;
+}
+.weare .col-md-9 img {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.weare-one{
+  margin-bottom: 160px;
+}
+.weare-two{
+  margin-bottom: 160px;
+}
+.overlay-bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: rgba(0, 0, 0, 0);
+  top: 0;
+  z-index: 2;
+  padding: 26% 15px 15px 15px;
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0)),
+    color-stop(100%, rgba(0, 0, 0, 0.52))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+}
+.overlay-bg h3{
+  font-size: 50px;
+  color: #ffffff;
+  font-family: "Lemon Bold";
+}
