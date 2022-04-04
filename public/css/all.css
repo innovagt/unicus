@@ -191,7 +191,40 @@ header .menu-logo .col-md-3 {
 
 .text-showcase a:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
-  background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(0, 128, 115, 1);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 1)),
+    color-stop(67%, rgba(58, 90, 153, 1))
+  );
+  background: -webkit-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -o-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -ms-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008073', endColorstr='#3a5a99', GradientType=1 );
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -267,17 +300,67 @@ header .menu-logo .col-md-3 {
 
 .work-grid .col-md-4 {
   overflow: hidden;
-  padding: 7px;
+  padding: 0 5px;
   height: 425px;
 }
 
 .work-grid .col-md-6 {
   overflow: hidden;
-  padding: 7px;
+  padding: 0 5px;
   height: 665px;
+  position: relative;
+}
+
+.work-grid .col-md-6 a::after,
+.col-md-3 a::after,
+.col-md-4 a::after,
+.col-md-12 a::after {
+  content: "";
+  display: block;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  position: relative;
+  background: rgba(0, 128, 115, 1);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 1)),
+    color-stop(67%, rgba(58, 90, 153, 1))
+  );
+  background: -webkit-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -o-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -ms-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008073', endColorstr='#3a5a99', GradientType=1 );
 }
 .work-grid .col-md-6 img,
-.work-grid .col-md-4 img {
+.work-grid .col-md-4 img,
+.work-grid .col-md-12 img,
+.work-grid .col-md-3 img {
   padding-left: 5px !important;
   padding-right: 5px !important;
   min-height: 100%;
@@ -299,14 +382,26 @@ header .menu-logo .col-md-3 {
 .work-grid .col-md-12 {
   height: 650px;
   overflow: hidden;
-  padding: 7px;
+  padding: 0 5px;
+}
+
+.work-grid .col-md-6 a:hover:after,
+.col-md-3 a:hover:after,
+.col-md-4 a:hover:after,
+.col-md-6 a:hover:after,
+.col-md-12 a:hover:after {
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
 }
 
 .work-grid .col-md-12:hover img,
 .work-grid .col-md-6:hover img,
 .work-grid .col-md-4:hover img,
 .work-grid .col-md-3:hover img {
-  transform: scale(1.03);
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -374,7 +469,40 @@ header .menu-logo .col-md-3 {
 .about-text a:hover,
 .btn-unicus:hover {
   border: 1px solid rgba(255, 255, 255, 0.598);
-  background-image: linear-gradient(224deg, #3a5999 0%, #008074 100%);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(0, 128, 115, 1);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 1)),
+    color-stop(67%, rgba(58, 90, 153, 1))
+  );
+  background: -webkit-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -o-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -ms-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008073', endColorstr='#3a5a99', GradientType=1 );
   color: #ffffff;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -403,7 +531,39 @@ header .menu-logo .col-md-3 {
 }
 
 footer {
-  background-image: linear-gradient(180deg, #3a5999 0%, #008074 100%);
+  background: rgba(0, 128, 115, 1);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 1)),
+    color-stop(67%, rgba(58, 90, 153, 1))
+  );
+  background: -webkit-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -o-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -ms-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008073', endColorstr='#3a5a99', GradientType=1 );
   padding: 80px 0 35px 0;
 }
 footer .col-md-4 .box-pais {
@@ -521,7 +681,41 @@ footer .icon-f {
 .filters .option-general.active {
   background-color: #ffffff;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(0, 128, 115, 1);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, rgba(0, 128, 115, 1)),
+    color-stop(67%, rgba(58, 90, 153, 1))
+  );
+  background: -webkit-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -o-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: -ms-linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  background: linear-gradient(
+    15deg,
+    rgba(0, 128, 115, 1) 0%,
+    rgba(58, 90, 153, 1) 67%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008073', endColorstr='#3a5a99', GradientType=1 );
   border-color: transparent;
+  color: #ffffff;
 }
 .container-menu-filter {
   position: relative;
@@ -604,8 +798,6 @@ footer .icon-f {
   height: 100vh;
 }
 
-
-
 #BoxArticle canvas {
   height: 100vh;
   width: 100vw !important;
@@ -617,7 +809,7 @@ footer .icon-f {
 
 .col-md-3.in18-content {
   text-align: right;
-  padding: 45px 30px 0px 0px !important;
+  padding: 45px 55px 0px 0px !important;
 }
 
 .in18 {
@@ -672,10 +864,10 @@ footer .icon-f {
   position: relative;
   z-index: 1;
 }
-.weare-one{
+.weare-one {
   margin-bottom: 160px;
 }
-.weare-two{
+.weare-two {
   margin-bottom: 160px;
 }
 .overlay-bg {
@@ -720,7 +912,7 @@ footer .icon-f {
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }
-.overlay-bg h3{
+.overlay-bg h3 {
   font-size: 50px;
   color: #ffffff;
   font-family: "Lemon Bold";

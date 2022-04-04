@@ -14,14 +14,11 @@ const myLoaderBlur = ({ src, width, quality }) => {
 
 const ImageWrap = styled.div`
   img {
-    padding: 0 8px !important;
+    padding: 0px !important;
     object-fit: cover !important;
   }
 
-  img:hover {
-    transform: scale(1.02);
-    opacity: 1 !important;
-  }
+ 
 `;
 
 const DynamicComponentWithNoSSR = dynamic(
