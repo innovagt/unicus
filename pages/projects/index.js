@@ -7,7 +7,6 @@ import classNames from "classnames";
 import { API_URL } from "../../config/urls";
 import configLanguajeWeb from "../../config/language"
 import { useRouter } from "next/router";
-import { route } from "next/dist/server/router";
 
 const Projects = ({ projects, countries, type_events }) => {
   const data_projects = projects.data;

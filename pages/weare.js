@@ -1,82 +1,59 @@
 import configLanguajeWeb from '../config/language'
 import { useRouter } from "next/router"
 import Head from "next/head"
+import axios from "axios";
+import { API_URL } from "../config/urls";
+import { WeAreOne, WeAreTwo } from '../components/common/weare';
 
-const WeAre = () => {
+const WeAre = ({weare}) => {
   const router = useRouter()
-
   return (
     <>
       <Head>
         <title>{configLanguajeWeb.navWeAre[`${router.locale}`]} | Unicus </title>
       </Head>
       <section className="weare">
-        <div className="weare-one">
-          <h1>WE ARE</h1>
-          <div className="row">
-            <div className="col-md-3">
-              <div className="descripton-weare">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a nisl gravida, placerat libero
-                  sit amet, aliquam felis. Suspendisse tortor massa, rhoncus a sagittis eget, bibendum nec ex.
-                  Donec venenatis turpis odio, non aliquet lorem finibus id. Maecenas vitae dignissim enim.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-9">
-              <img src="https://via.placeholder.com/900x325" alt="" />
-                <div className="overlay-bg">
-                  <h3>Details</h3>
-                </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="weare-two">
-          <h1 className="text-right">WE ARE</h1>
-          <div className="row">
-
-            <div className="col-md-9">
-              <img src="https://via.placeholder.com/900x325" alt="" />
-                <div className="overlay-bg">
-                  <h3>What make it works </h3>
-                </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="descripton-weare">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a nisl gravida, placerat libero
-                  sit amet, aliquam felis. Suspendisse tortor massa, rhoncus a sagittis eget, bibendum nec ex.
-                  Donec venenatis turpis odio, non aliquet lorem finibus id. Maecenas vitae dignissim enim.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="weare-one">
-          <h1>WE ARE</h1>
-          <div className="row">
-            <div className="col-md-3">
-              <div className="descripton-weare">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a nisl gravida, placerat libero
-                  sit amet, aliquam felis. Suspendisse tortor massa, rhoncus a sagittis eget, bibendum nec ex.
-                  Donec venenatis turpis odio, non aliquet lorem finibus id. Maecenas vitae dignissim enim.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-9">
-              <img src="https://via.placeholder.com/900x325" alt="" />
-                <div className="overlay-bg">
-                  <h3>Creators of  memories</h3>
-                </div>
-            </div>
-          </div>
-        </div>
+        {
+          weare.data.map((item, index) => {
+            const data = {
+              title: item.attributes.locale == router.locale || !item.attributes.localizations.data[0]?.attributes
+                ? item.attributes.title
+                : item.attributes.localizations.data[0].attributes.title,
+              label: item.attributes.locale == router.locale || !item.attributes.localizations.data[0]?.attributes
+                ? item.attributes.label
+                : item.attributes.localizations.data[0].attributes.label,
+              description: item.attributes.locale == router.locale || !item.attributes.localizations.data[0]?.attributes
+                ? item.attributes.description
+                : item.attributes.localizations.data[0].attributes.description,
+              picture: item.attributes.picture.data.attributes.url
+            }
+            if (index % 2 === 0) {
+              return <WeAreOne item={data}/>
+            } else {
+              return <WeAreTwo item={data}/>
+            }
+          })
+        }
       </section>
     </>
   )
 }
+
+export const getServerSideProps = async (context) => {
+  try {
+    const { data: weare } = await axios.get(
+      `${API_URL}/api/weares?populate=*`
+    );
+
+    return {
+      props: {
+        weare,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export default WeAre
