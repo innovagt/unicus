@@ -76,7 +76,7 @@ const Home = ({ projects, configWeb }) => {
           </div>
           <div className="social-nav">
             <a
-              href={phone}
+              href={`tel:${phone}`}
               className="animate__animated animate__fadeInRight"
               target="_blank"
               rel="noreferrer"
