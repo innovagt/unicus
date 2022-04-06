@@ -17,8 +17,6 @@ const ImageWrap = styled.div`
     padding: 0px !important;
     object-fit: cover !important;
   }
-
- 
 `;
 
 const DynamicComponentWithNoSSR = dynamic(
@@ -40,7 +38,7 @@ const Project = ({
         <div className="title-project">
           <h4>
             {
-              attributes.locale == locale || !attributes.localizations.data[0].attributes
+              attributes.locale == locale || !attributes.localizations.data[0]?.attributes
                 ? attributes.title
                 : attributes.localizations.data[0].attributes.title
             }
