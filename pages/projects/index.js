@@ -4,7 +4,7 @@ import axios from "axios";
 import "animate.css";
 import Project from "../../components/common/Project";
 import classNames from "classnames";
-import { API_URL } from "../../config/urls";
+import { API_URL, API_TOKEN } from "../../config/urls";
 import configLanguajeWeb from "../../config/language"
 import { useRouter } from "next/router";
 
@@ -223,12 +223,32 @@ export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
       `${API_URL}/api/projects?fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
+      ,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
     const { data: countries } = await axios.get(
       `${API_URL}/api/countries?fields[0]=name&fields[1]=locale&populate=localizations`
+      ,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
     const { data: type_events } = await axios.get(
-      `${API_URL}/api/type-events?fields[0]=name&fields[1]=locale&populate=localizations`
+      `${API_URL}/api/type-events?fields[0]=name&fields[1]=locale&populate=localizations`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
 
     return {

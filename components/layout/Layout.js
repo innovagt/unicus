@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
-import { API_URL } from "../../config/urls";
+import { API_URL, API_TOKEN } from "../../config/urls";
 // const TIMEOUT = 2000;
 const TIMEOUT = 250;
 const gsapDuration = TIMEOUT / 1000;
@@ -22,7 +22,13 @@ const Layout = ({ children }) => {
 
     const HandleApiFooter = async ()  => {
       const dataFetching = await axios.get(
-        `${API_URL}/api/country-footers?populate=%2a`
+        `${API_URL}/api/country-footers?populate=%2a`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${API_TOKEN}`,
+          }
+        }
       );
       useCountryFooter(dataFetching.data.data)
     }

@@ -7,7 +7,7 @@ import ImageProject from "../../components/common/ImageProject";
 import Project from "../../components/common/Project";
 import Fancybox from "../../components/common/fancybox.js";
 import { pageProject } from "../../config/language";
-import { API_URL } from "../../config/urls";
+import { API_URL, API_TOKEN } from "../../config/urls";
 import "animate.css";
 import { useRouter } from "next/router";
 
@@ -155,13 +155,31 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: project } = await axios.get(
-      `${API_URL}/api/projects/${context.query.id}?populate=%2a`
+      `${API_URL}/api/projects/${context.query.id}?populate=%2a`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
     const { data: recommendedP } = await axios.get(
-      `${API_URL}/api/projects/${context.query.id}?populate[recommended][populate]=cover&populate[recommended][populate]=localizations&populate[country][populate]=localizations`
+      `${API_URL}/api/projects/${context.query.id}?populate[recommended][populate]=cover&populate[recommended][populate]=localizations&populate[country][populate]=localizations`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
     const { data: countryP } = await axios.get(
-      `${API_URL}/api/projects/${context.query.id}?populate[country][populate]=localizations`
+      `${API_URL}/api/projects/${context.query.id}?populate[country][populate]=localizations`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${API_TOKEN}`,
+        }
+      }
     );
     return {
       props: {
