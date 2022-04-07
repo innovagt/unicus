@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="es">
+      <Html lang="en">
         <Head>
           <meta charset="utf-8" />
           <meta name="author" content="INNOVATE" />
