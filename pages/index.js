@@ -10,7 +10,7 @@ import axios from "axios";
 import configLanguajeWeb from "../config/language";
 
 import { useEffect, useState } from "react";
-import { API_URL, API_TOKEN } from "../config/urls";
+import { API_URL } from "../config/urls";
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import("../components/common/wowComponent"),
@@ -184,23 +184,11 @@ const Home = ({ projects, configWeb }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true`,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${API_TOKEN}`,
-        }
-      }
+      `${API_URL}/api/projects?sort=date_event:DESC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true`
     );
 
     const { data: configWeb } = await axios.get(
-      `${API_URL}/api/configuration?populate=%2a`,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${API_TOKEN}`,
-        }
-      }
+      `${API_URL}/api/configuration?populate=%2a`
     );
 
     return {

@@ -43,12 +43,6 @@ export const getServerSideProps = async (context) => {
   try {
     const { data: weare } = await axios.get(
       `${API_URL}/api/weares?populate=*`
-      , {
-        headers: {
-          Authorization:
-            `Bearer ${API_TOKEN}`,
-        }
-      }
     );
 
     return {
