@@ -222,7 +222,7 @@ const Projects = ({ projects, countries, type_events }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
+      `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
     );
     const { data: countries } = await axios.get(
       `${API_URL}/api/countries?fields[0]=name&fields[1]=locale&populate=localizations`

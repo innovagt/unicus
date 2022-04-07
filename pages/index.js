@@ -184,7 +184,7 @@ const Home = ({ projects, configWeb }) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?sort=date_event:DESC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true`
+      `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true`
     );
 
     const { data: configWeb } = await axios.get(
