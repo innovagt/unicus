@@ -103,20 +103,25 @@ const Navbar = ({ absolute = false }) => {
               </nav>
             </div>
             <div className="col-md-3 in18-content">
-              {router.locales.map((locale) => {
-                return router.locale != locale ? (
-                  <Link href={router.asPath} locale={locale} key={locale}>
-                    <a
-                      className="animate__animated animate__fadeIn in18"
-                      key={locale}
-                    >
-                      {locale}
-                    </a>
-                  </Link>
-                ) : (
-                  ""
-                );
-              })}
+              {
+                router.locales.map((locale) => {
+                  if (locale == 'default') {
+                     return
+                  }
+                  return router.locale != locale ? (
+                    <Link href={router.asPath} locale={locale} key={locale}>
+                      <a
+                        className="animate__animated animate__fadeIn in18"
+                        key={locale}
+                      >
+                        {locale}
+                      </a>
+                    </Link>
+                  ) : (
+                    ""
+                  );
+                })
+              }
             </div>
           </div>
         </div>
