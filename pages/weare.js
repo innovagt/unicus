@@ -42,7 +42,7 @@ const WeAre = ({weare}) => {
 export const getServerSideProps = async (context) => {
   try {
     const { data: weare } = await axios.get(
-      `${API_URL}/api/weares?populate=*`
+      `${API_URL}/api/weares?populate=*&pagination[start]=0&pagination[limit]=100`
     );
 
     return {

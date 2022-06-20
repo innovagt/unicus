@@ -7,9 +7,41 @@ import classNames from "classnames";
 import { API_URL } from "../../config/urls";
 import configLanguajeWeb from "../../config/language"
 import { useRouter } from "next/router";
+import styled from "styled-components";
+
+const ParentGrid = styled.div`
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+
+    & > .grid-projects {
+      height: 425px !important;
+    }
+    & .grid-p1,
+    & .grid-p2,
+    & .grid-p3{
+      grid-column: span 2;
+    }
+
+    & .grid-p4{
+      grid-column-start: 1;
+      grid-column-end: 7;
+    }
+
+    & .grid-p5{
+      grid-column-start: 1;
+      grid-column-end: 4;
+    }
+    & .grid-p6{
+      grid-column-start: 4;
+      grid-column-end: 7;
+    }
+`
+
 
 const Projects = ({ projects, countries, type_events }) => {
-  const data_projects = projects.data;
+  const data_projects = projects;
   const data_countries = countries.data;
   const data_typeEvents = type_events.data;
 
@@ -203,17 +235,17 @@ const Projects = ({ projects, countries, type_events }) => {
         </div>
       </section>
       <section className="work-grid">
-        <div className="row">
+        <ParentGrid>
           {
             filtradas.length > 0 ?
               (filtradas.map((project) => {
                 count++;
-                count = count > 7 ? 1 : count;
-                let grid = gridSelectionAll(count);
-                return <Project key={project.id} project={project} grid={grid} locale={router.locale} />;
+                count = count > 6 ? 1 : count;
+                {/* let grid = gridSelectionAll(count); */}
+                return <Project key={project.id} project={project} grid={`grid-projects grid-p${count}`} locale={router.locale} />;
               })) : (<h1 className="projectNull wow fadeIn">{configLanguajeWeb.nothingProjects[`${router.locale}`]}</h1>)
           }
-        </div>
+        </ParentGrid>
       </section>
     </>
   );
@@ -221,14 +253,34 @@ const Projects = ({ projects, countries, type_events }) => {
 
 export const getServerSideProps = async (context) => {
   try {
-    const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
+    // const { data: projects } = await axios.get(
+    //   `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations`
+    // );
+    const { data: dataProjects } = await axios.get(
+      `${API_URL}/api/projects?pagination[start]=0&pagination[limit]=1`
     );
+    const dataLimit = 100
+    const projects = []
+
+    if (dataProjects.meta.pagination.total > dataLimit) {
+      const totalPages = Math.ceil(dataProjects.meta.pagination.total / dataLimit)
+      for (let i = 1; i <= totalPages; i += 1) {
+        const { data: dp } = await axios.get(
+          `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations&pagination[page]=${i}&pagination[pageSize]=${dataLimit}`
+        );
+        projects.push(...dp.data)
+      }
+    } else {
+      const { data: dp } = await axios.get(
+        `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=locale&populate=cover&populate[0]=country&populate[1]=type_events&populate=localizations&pagination[start]=0&pagination[limit]=100`
+      );
+      projects.push(...dp.data)
+    }
     const { data: countries } = await axios.get(
-      `${API_URL}/api/countries?fields[0]=name&fields[1]=locale&populate=localizations`
+      `${API_URL}/api/countries?fields[0]=name&fields[1]=locale&populate=localizations&pagination[start]=0&pagination[limit]=100`
     );
     const { data: type_events } = await axios.get(
-      `${API_URL}/api/type-events?fields[0]=name&fields[1]=locale&populate=localizations`
+      `${API_URL}/api/type-events?fields[0]=name&fields[1]=locale&populate=localizations&pagination[start]=0&pagination[limit]=100`
     );
 
     return {

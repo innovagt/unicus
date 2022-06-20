@@ -26,7 +26,7 @@ const DynamicComponentWithNoSSR = dynamic(
 
 const Project = ({
   project,
-  grid = "col-md-4",
+  grid = "grid-p1",
   animate = " animate__animated animate__fadeInUp",
   locale,
 }) => {

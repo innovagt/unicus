@@ -311,10 +311,16 @@ header .menu-logo .col-md-3 {
   position: relative;
 }
 
+.grid-projects{
+  overflow: hidden;
+  position: relative;
+}
+
 .work-grid .col-md-6 a::after,
 .col-md-3 a::after,
 .col-md-4 a::after,
-.col-md-12 a::after {
+.col-md-12 a::after,
+.grid-projects a::after {
   content: "";
   display: block;
   height: 100%;
@@ -389,7 +395,8 @@ header .menu-logo .col-md-3 {
 .col-md-3 a:hover:after,
 .col-md-4 a:hover:after,
 .col-md-6 a:hover:after,
-.col-md-12 a:hover:after {
+.col-md-12 a:hover:after,
+.grid-projects a:hover:after {
   opacity: 0.7;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -401,7 +408,8 @@ header .menu-logo .col-md-3 {
 .work-grid .col-md-12:hover img,
 .work-grid .col-md-6:hover img,
 .work-grid .col-md-4:hover img,
-.work-grid .col-md-3:hover img {
+.work-grid .col-md-3:hover img
+.grid-projects:hover img  {
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -412,7 +420,8 @@ header .menu-logo .col-md-3 {
 .work-grid .col-md-12:hover .title-project,
 .work-grid .col-md-6:hover .title-project,
 .work-grid .col-md-4:hover .title-project,
-.work-grid .col-md-3:hover .title-project {
+.work-grid .col-md-3:hover .title-project,
+.grid-projects:hover .title-project {
   background-color: #ffffff;
   padding: 20px 35px;
   border-right: 2px solid #018075;

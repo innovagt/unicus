@@ -36,7 +36,8 @@ const Home = ({ projects, configWeb }) => {
     video_director,
     youtube,
   } = localeAttributes;
-  const data_projects = projects.data;
+  const data_projects = projects;
+  // console.log(data_projects)
   let count = 0;
 
   const [allProjects, setProjects] = useState([]);
@@ -147,20 +148,22 @@ const Home = ({ projects, configWeb }) => {
       </section>
       <section className="work-grid">
         <div className="row">
-          {allProjects.map((project) => {
-            count++;
-            count = count > 5 ? 1 : count;
-            let grid = gridSelectionHome(count);
-            return (
-              <Project
-                key={project.id}
-                project={project}
-                grid={grid}
-                animate={" wow fadeInUp"}
-                locale={router.locale}
-              />
-            );
-          })}
+          {
+            allProjects.length > 0 && allProjects.map((project) => {
+              count++;
+              count = count > 5 ? 1 : count;
+              let grid = gridSelectionHome(count);
+              return (
+                <Project
+                  key={project.id}
+                  project={project}
+                  grid={grid}
+                  animate={" wow fadeInUp"}
+                  locale={router.locale}
+                />
+              );
+            })
+          }
         </div>
         <div
           className="container-in"
@@ -183,9 +186,28 @@ const Home = ({ projects, configWeb }) => {
 
 export const getServerSideProps = async (context) => {
   try {
-    const { data: projects } = await axios.get(
-      `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true`
+    const {data: dataProjects} = await axios.get(
+      `${API_URL}/api/projects?pagination[start]=0&pagination[limit]=1`
     );
+    const dataLimit = 100
+    const projects = []
+
+    if (dataProjects.meta.pagination.total > dataLimit) {
+      const totalPages = Math.ceil(dataProjects.meta.pagination.total / dataLimit)
+      // console.log(totalPages)
+      for (let i = 1; i <= totalPages; i += 1) {
+        const {data: dp} = await axios.get(
+          `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true&pagination[page]=${i}&pagination[pageSize]=${dataLimit}`
+        );
+        // console.log("Pagina No." + i, dp)
+        projects.push(...dp.data)
+      }
+    } else {
+      const { data: dp } = await axios.get(
+        `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true&pagination[start]=0&pagination[limit]=100`
+      );
+      projects.push(...dp.data)
+    }
 
     const { data: configWeb } = await axios.get(
       `${API_URL}/api/configuration?populate=%2a`

@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
 
     const HandleApiFooter = async ()  => {
       const dataFetching = await axios.get(
-        `${API_URL}/api/country-footers?populate=%2a`
+        `${API_URL}/api/country-footers?populate=%2a&pagination[start]=0&pagination[limit]=100`
       );
       useCountryFooter(dataFetching.data.data)
     }
