@@ -58,7 +58,7 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
             src={
               attributes.video_vimeo
                 ? attributes.video_vimeo
-                : "https://player.vimeo.com/external/198905291.hd.mp4?s=43fc8816fb9ba83fe4e9cbea704645b5b909ea53&amp;profile_id=175"
+                : "https://player.vimeo.com/progressive_redirect/playback/583963426/rendition/1080p/file.mp4?loc=external&signature=e28a7a585fc8549caccd7882dbb511677b34391f9795e29aeea1eb9793e2d2a6"
             }
             type="video/mp4"
           />
