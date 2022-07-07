@@ -1,11 +1,12 @@
-import {  NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 const PUBLIC_FILE = /\.(.*)$/
 const DEFAULT_LOCALE = "en";
 
-
 export function middleware(req) {
   let res = NextResponse.next();
+  // console.log('Request', req)
+  // console.log('Response', res)
 
   const shouldHandleLocale =
     !PUBLIC_FILE.test(req.nextUrl.pathname) &&
