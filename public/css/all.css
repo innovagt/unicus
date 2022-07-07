@@ -966,6 +966,7 @@ footer .icon-f {
   color: #ffffff;
   font-family: "Lemon Bold";
 }
+
 .down{
 	position: absolute;
 	bottom: 20px;
@@ -973,10 +974,15 @@ footer .icon-f {
 	z-index: 2;
 	display: inline-block;
 	-webkit-transform: translate(0, -50%);
-	transform: translate(0, -50%);
+  transform: translate(-50%, -50%);
+	/* transform: translate(0, -50%); */
 	text-decoration: none;
   color: rgb(255, 255, 255);
   letter-spacing: 2px;
+  font-size: 1.2em;
+  font-family: "Lemon Bold";
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .down {
 	padding-top: 70px;
