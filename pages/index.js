@@ -74,6 +74,7 @@ const Home = ({ projects, configWeb }) => {
                 {configLanguajeWeb.buttonProjects[`${router.locale}`]}
               </a>
             </Link>
+            <div className="down"><span></span>Scroll</div>
           </div>
           <div className="social-nav">
             <a
