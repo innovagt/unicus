@@ -34,8 +34,7 @@ header .menu-logo .col-md-3 {
   background-color: transparent;
   border-color: transparent;
 }
-.navbar-default .navbar-nav > li > a,
-.in18 {
+.navbar-default .navbar-nav > li > a {
   color: #ffffff;
   font-size: 16px;
   text-transform: uppercase;
@@ -49,8 +48,8 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
-.navbar-default .navbar-nav > li > a:hover,
-.in18:hover {
+
+.navbar-default .navbar-nav > li > a:hover {
   opacity: 0.8;
   color: #ffffff;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -61,6 +60,7 @@ header .menu-logo .col-md-3 {
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
 }
+
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
@@ -74,6 +74,7 @@ header .menu-logo .col-md-3 {
 .navbar {
   margin: 0 0 0 0;
 }
+
 .showcase {
   position: relative;
   height: 100vh;
@@ -818,14 +819,53 @@ footer .icon-f {
 
 .col-md-3.in18-content {
   text-align: right;
-  padding: 45px 55px 0px 0px !important;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5em;
+  padding: 3em 2.4em !important;
+  
+  /* padding: 45px 55px 0px 0px !important; */
 }
 
-.in18 {
-  border: none;
+.col-md-3.in18-content a:hover{
+  opacity: 1 !important;
+  color: rgb(218, 217, 217) !important;
 }
+
+.col-md-3.in18-content a::after{
+  background: none;
+}
+
+
+.in18 {
+  padding: 0 !important;
+  padding-bottom: 1rem !important;
+  filter: contrast(0.4);
+  border: none;
+  font-size: 1em;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Lemon Regular";
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
+
+.in18.active{
+  filter: contrast(1);
+  border-bottom: 1px solid white;
+}
+
 .in18:hover {
   border: none;
+  filter: contrast(0.8);
+}
+
+.flag-language {
+  width: 1.4em;
+  margin-right: 5px;
 }
 
 /* @media (min-width: 768px) {

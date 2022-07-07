@@ -2,8 +2,10 @@ import Link from "next/link";
 import Script from "next/script";
 import "animate.css";
 import configLanguajeWeb from "../../config/language";
+// import flagSpanish from '../../../public/img/spanish.png';
 import { useRouter } from "next/router";
 import { route } from "next/dist/server/router";
+import classNames from "classnames";
 
 const Navbar = ({ absolute = false }) => {
   const router = useRouter();
@@ -108,18 +110,17 @@ const Navbar = ({ absolute = false }) => {
                   if (locale == 'default') {
                      return
                   }
-                  return router.locale != locale ? (
+                  return (
                     <Link href={router.asPath} locale={locale} key={locale}>
                       <a
-                        className="animate__animated animate__fadeIn in18"
+                        className={classNames({ 'animate__animated animate__fadeIn in18': true , active: router.locale === locale })}
                         key={locale}
                       >
+                        <img className="flag-language" src={`/img/${locale}.png`}alt={`flag_${locale}`}></img>
                         {locale}
                       </a>
                     </Link>
-                  ) : (
-                    ""
-                  );
+                  )
                 })
               }
             </div>
