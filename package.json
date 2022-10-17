@@ -7,9 +7,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "engines": {
-    "node": "16.15.1"
-  },
   "dependencies": {
     "@fancyapps/ui": "^4.0.26",
     "animate.css": "^4.1.1",
