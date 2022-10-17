@@ -28,9 +28,9 @@ const WeAre = ({weare}) => {
               picture: item.attributes.picture.data.attributes.url
             }
             if (index % 2 === 0) {
-              return <WeAreOne item={data}/>
+              return <WeAreOne key={index} item={data}/>
             } else {
-              return <WeAreTwo item={data}/>
+              return <WeAreTwo key={index} item={data}/>
             }
           })
         }
