@@ -754,10 +754,8 @@ footer .icon-f {
 }
 .title-one h4 {
   color: #3a5999;
-  font-size: 24px;
   font-family: 'Lemon Medium';
   margin: 0;
-  padding-top: 20px;
 }
 .title-one p {
   color: #3f3f3f;
@@ -1017,10 +1015,183 @@ footer .icon-f {
   }
 }
 
-@media screen and (min-width: 320px) {
-  body {
+@media screen and (max-width: 320px) {
+  /* body {
     background-color: red;
+  } */
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
   }
+
+  .filters .container-in {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .filters .option-general {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 0;
+  }
+
+  .col-md-3.in18-content {
+    position: absolute;
+    top: -5px;
+    right: 0;
+  }
+
+  .img_logo_unicus {
+    position: absolute;
+    top: -15px;
+    left: 0;
+  }
+
+  .img_logo_unicus img {
+    width: 30px;
+  }
+
+  .col-md-3.in18-content .in18 {
+    font-size: 12px;
+  }
+
+  .bottomfooter p {
+    margin-right: 0px;
+    margin-bottom: 12px;
+    display: block;
+    font-size: 12px !important;
+  }
+
+  .end .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .navbar-header {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+  }
+
+  .navbar-header button {
+    margin: 0;
+    border: 1px solid #fff;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+  }
+
+  /* .nav_links_unicus {
+    justify-content: center;
+  } */
+
+  .showcase .overlay .social-nav {
+    border-left: 1px solid transparent;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding-top: 5%;
+  }
+
+  .showcase .overlay .social-nav a {
+    display: inline-block;
+  }
+
+  .text-showcase {
+    text-align: center;
+    padding-top: 70%;
+  }
+
+  .text-showcase p {
+    font-size: 45px;
+  }
+
+  .about-text p {
+    padding: 0 24px;
+  }
+
+  /* PROJECTS */
+  .work-grid {
+    padding: 0 !important;
+  }
+
+  .work-grid .row {
+    margin-left: -15px !important;
+  }
+
+  .work-grid .col-md-6,
+  .work-grid .col-md-4 {
+    height: 300px;
+  }
+
+  .title-project {
+    width: 70%;
+    padding: 15px 20px;
+  }
+
+  /* We Are */
+
+  .weare {
+    padding: 20px 0;
+  }
+
+  .weare h1 {
+    font-size: 30px;
+    padding: 0 20px;
+  }
+
+  .weare .col-md-3 {
+    display: none;
+    padding: 10px;
+  }
+
+  .weare .col-md-9::after {
+    height: 150px;
+  }
+
+  .overlay-bg {
+    top: -10px;
+  }
+  .overlay-bg h3 {
+    font-size: 25px;
+  }
+
+  .weare-one,
+  .weare-two {
+    margin-bottom: 60px;
+  }
+
+  /* By Project */
+  .showcase-p {
+    height: 300px;
+  }
+
+  .title-one{
+    padding: 20px 0;
+  }
+
+  .title-one h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    padding: 40px 20px;
+  }
+}
+@media screen and (min-width: 320px) {
+  /* body {
+    background-color: red;
+  } */
 
   .filters {
     display: flex;
@@ -1171,11 +1342,29 @@ footer .icon-f {
   .weare-two {
     margin-bottom: 60px;
   }
+
+  /* By Project */
+  .showcase-p {
+    height: 300px;
+  }
+
+  .title-one{
+    padding: 20px 0;
+  }
+
+  .title-one h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    padding: 40px 20px;
+  }
 }
 @media screen and (min-width: 480px) {
-  body {
+  /* body {
     background-color: blue;
-  }
+  } */
 
   .text-showcase {
     text-align: center;
@@ -1214,9 +1403,9 @@ footer .icon-f {
   }
 }
 @media screen and (min-width: 768px) {
-  body {
+  /* body {
     background-color: green;
-  }
+  } */
   .bottomfooter p {
     margin-right: 12px;
     display: inline-block;
@@ -1311,9 +1500,9 @@ footer .icon-f {
   }
 }
 @media screen and (min-width: 1024px) {
-  body {
+  /* body {
     background-color: yellow;
-  }
+  } */
 
   .col-md-3.in18-content {
     padding: 3em 1em !important;
@@ -1330,12 +1519,30 @@ footer .icon-f {
   .title-project {
     width: 45%;
   }
+
+  /* By Project */
+  .showcase-p {
+    height: 90vh;
+  }
+
+  .title-one{
+    padding: 45px 0;
+  }
+
+  .title-one h4{
+    font-size: 24px;
+    padding-top: 20px;
+  }
+
+  .description {
+    padding: 60px 0;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-  body {
+  /* body {
     background-color: darkblue;
-  }
+  } */
 
   .nav_links_unicus {
     justify-content: flex-start;

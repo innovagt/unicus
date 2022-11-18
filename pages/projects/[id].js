@@ -68,10 +68,10 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
         <div className="container-in">
           <div className="title-one">
             <div className="row">
-              <div className="col-md-9 wow fadeInLeft">
+              <div className="col-xs-12 col-sm-8 col-md-9 wow fadeInLeft">
                 <h4>{titleProject}</h4>
               </div>
-              <div className="col-md-3 wow fadeInRight">
+              <div className="col-xs-12 col-sm-4 col-md-3 wow fadeInRight">
                 <p>
                   {pageProject.country[`${router.locale}`]}:{" "}
                   {
@@ -91,7 +91,7 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
       <section className="description">
         <div className="container-in">
           <div className="row">
-            <div className="col-md-6 wow fadeInUp">
+            <div className="col-md-4 wow fadeInUp">
               <h3>
                 {attributes.locale == router.locale ||
                   !attributes.localizations.data[0]?.attributes.subtitle
@@ -99,7 +99,7 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
                   : attributes.localizations.data[0].attributes.subtitle}
               </h3>
             </div>
-            <div className="col-md-6 wow fadeInUp">
+            <div className="col-md-8 p-2 wow fadeInUp">
               <ReactMarkdown>
                 {attributes.locale == router.locale ||
                   !attributes.localizations.data[0]?.attributes.description
