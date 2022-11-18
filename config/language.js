@@ -29,7 +29,7 @@ const configWeb = {
   },
   rightsReserved: {
     es: "©Unicus - Derechos Reservados 2022",
-    en: "©Unicus - All rights reserved 2020"
+    en: "©Unicus - All rights reserved 2022"
   },
   development: {
     es: "Desarrollado por",

@@ -13,12 +13,12 @@ export const WeAreOne = ({ item }) => {
     <div className="weare-one">
       <h1>{item.title}</h1>
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-xs-3 col-sm-3 col-md-3">
           <div className="descripton-weare">
             <ReactMarkdown>{item.description}</ReactMarkdown>
           </div>
         </div>
-        <div className="col-md-9">
+        <div className="col-xs-9 col-sm-9 col-md-9">
           <img src={item.picture} alt="" />
           <div className="overlay-bg">
             <h3>{item.label}</h3>
@@ -34,13 +34,13 @@ export const WeAreTwo = ({ item }) => {
     <div className="weare-two">
       <h1 className="text-right">{item.title}</h1>
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-xs-9 col-sm-9 col-md-9">
           <img src={item.picture} alt="" />
           <div className="overlay-bg">
             <h3>{item.label}</h3>
           </div>
         </div>
-        <div className="col-md-3">
+        <div className="col-xs-3 col-sm-3 col-md-3">
           <div className="descripton-weare">
             <div className="descripton-weare">
               <ReactMarkdown>{item.description}</ReactMarkdown>

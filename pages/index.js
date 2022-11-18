@@ -43,8 +43,8 @@ const Home = ({ projects, configWeb }) => {
   const [allProjects, setProjects] = useState([]);
 
   const gridSelectionHome = (indice) => {
-    if (indice > 2) return "col-md-4";
-    return "col-md-6";
+    if (indice > 2) return "col-xs-12 col-sm-6 col-md-4";
+    return "col-xs-12 col-sm-6 col-md-6";
   };
 
   // const [useScript, setUseScript] = useState(false);

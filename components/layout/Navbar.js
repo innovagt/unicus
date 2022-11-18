@@ -48,14 +48,14 @@ const Navbar = ({ absolute = false }) => {
         <Script src="/js/Particles.js" strategy="beforeInteractive" />
         <div className="menu-logo">
           <div className="row">
-            <div className="col-md-3 text-center animate__animated animate__fadeInUp">
+            <div className="col-sm-2 col-md-3 col-lg-3 img_logo_unicus text-center animate__animated animate__fadeInUp">
               <Link href="/">
                 <a>
                   <img src="/img/logo.svg" alt="" />
                 </a>
               </Link>
             </div>
-            <div className="col-md-6">
+            <div className="col-sm-10 col-md-9 col-lg-6 nav_links_unicus">
               <nav className="navbar navbar-default">
                 <div className="container-fluid">
                   <div className="navbar-header">
@@ -104,7 +104,7 @@ const Navbar = ({ absolute = false }) => {
                 </div>
               </nav>
             </div>
-            <div className="col-md-3 in18-content">
+            <div className="col-md-3 col-lg-3 in18-content">
               {
                 router.locales.map((locale) => {
                   if (locale == 'default') {

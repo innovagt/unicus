@@ -15,6 +15,74 @@ const ParentGrid = styled.div`
     grid-gap: 20px;
     grid-template-columns: repeat(6, 1fr);
 
+    @media (min-width: 360px){
+      & > .grid-projects {
+        height: 300px !important;
+      }
+
+      & .grid-p1,
+      & .grid-p2,
+      & .grid-p3,
+      & .grid-p4,
+      & .grid-p5,
+      & .grid-p6{
+        grid-column-start: 1;
+        grid-column-end: 7;
+      }
+    }
+
+    @media (min-width: 480px){
+      & > .grid-projects {
+        height: 250px !important;
+      }
+
+      & .grid-p1,
+      & .grid-p2,
+      & .grid-p3,
+      & .grid-p4,
+      & .grid-p5,
+      & .grid-p6{
+        grid-column: span 3;
+      }
+    }
+    @media (min-width: 768px){
+      & > .grid-projects {
+        height: 325px !important;
+      }
+
+      & .grid-p1,
+      & .grid-p4 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+      }
+
+      & .grid-p2,
+      & .grid-p3,
+      & .grid-p5,
+      & .grid-p6 {
+        grid-column: span 3;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      & > .grid-projects {
+        height: 325px !important;
+      }
+      & .grid-p1,
+      & .grid-p2,
+      & .grid-p4,
+      & .grid-p5{
+        grid-column: span 3;
+      }
+
+      & .grid-p3,
+      & .grid-p6{
+        grid-column-start: 1;
+        grid-column-end: 7;
+      }
+    }
+
+    @media (min-width: 1200px) {
     & > .grid-projects {
       height: 425px !important;
     }
@@ -37,6 +105,7 @@ const ParentGrid = styled.div`
       grid-column-start: 4;
       grid-column-end: 7;
     }
+    }
 `
 
 
@@ -55,11 +124,11 @@ const Projects = ({ projects, countries, type_events }) => {
   const [filters, setFilters] = useState([]);
   const [filtradas, setFiltradas] = useState([]);
 
-  const gridSelectionAll = (indice) => {
-    if (indice == 4) return "col-md-12";
-    if (indice >= 5 && indice <= 6) return "col-md-6";
-    return "col-md-4";
-  };
+  // const gridSelectionAll = (indice) => {
+  //   if (indice == 4) return "col-md-12";
+  //   if (indice >= 5 && indice <= 6) return "col-xs-12 col-sm-6 col-md-6";
+  //   return "col-xs-12 col-sm-6 col-md-4";
+  // };
 
   const router = useRouter()
 
@@ -241,7 +310,7 @@ const Projects = ({ projects, countries, type_events }) => {
               (filtradas.map((project) => {
                 count++;
                 count = count > 6 ? 1 : count;
-                {/* let grid = gridSelectionAll(count); */}
+                {/* let grid = gridSelectionAll(count); */ }
                 return <Project key={project.id} project={project} grid={`grid-projects grid-p${count}`} locale={router.locale} />;
               })) : (<h1 className="projectNull wow fadeIn">{configLanguajeWeb.nothingProjects[`${router.locale}`]}</h1>)
           }

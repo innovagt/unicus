@@ -1,7 +1,7 @@
 const FooterCountry = ({ country = {}, locale }) => {
   const { attributes } = country;
   return (
-    <div className="col-md-4">
+    <div className="col-xs-12 col-sm-6 col-md-4">
       <div className="box-pais">
         <div className="pais">
           <span>
