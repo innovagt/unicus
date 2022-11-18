@@ -10,11 +10,26 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const ParentGrid = styled.div`
-    padding: 20px;
+    padding: 20px 10px;
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(6, 1fr);
 
+    @media (max-width: 360px){
+      & > .grid-projects {
+        height: 300px !important;
+      }
+
+      & .grid-p1,
+      & .grid-p2,
+      & .grid-p3,
+      & .grid-p4,
+      & .grid-p5,
+      & .grid-p6{
+        grid-column-start: 1;
+        grid-column-end: 7;
+      }
+    }
     @media (min-width: 360px){
       & > .grid-projects {
         height: 300px !important;
