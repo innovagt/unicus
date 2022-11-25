@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import ReactMarkdown from "react-markdown";
@@ -49,7 +49,6 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
           data-width="640"
           data-height="360"
           playsInline
-          preload
           loop
           muted
           autoPlay
@@ -131,7 +130,7 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
       </section>
       {recommended.length > 0 && (
         <>
-          <section className="work-grid recomended">
+          <section className="work-grid">
             <div className="row">
               <div className="text-center wow fadeInUp">
                 <h3>{pageProject.projectRecommended[`${router.locale}`]}</h3>
@@ -140,6 +139,7 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
                 <Project
                   key={project.id}
                   project={project}
+                  grid={"col-md-3"}
                   animate={" wow fadeInUp"}
                   locale={router.locale}
                 />
@@ -157,8 +157,8 @@ export const getServerSideProps = async (context) => {
     const { data: project } = await axios.get(
       `${API_URL}/api/projects/${context.query.id}?populate=%2a`
     );
-    const { data: recommendedP } = await axios.get(
-      `${API_URL}/api/projects/${context.query.id}?populate[recommended][populate]=cover&populate[recommended][populate]=localizations&populate[country][populate]=localizations`
+    const { data: recommendedP }  = await axios.get(
+      `${API_URL}/api/projects/${context.query.id}?populate[recommended][populate]=cover&populate[recommended][populate]=localizations&populate[country][populate]=localizations&populate[cover]=*`
     );
     const { data: countryP } = await axios.get(
       `${API_URL}/api/projects/${context.query.id}?populate[country][populate]=localizations`

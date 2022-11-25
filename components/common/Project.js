@@ -47,7 +47,7 @@ const Project = ({
         <Link href={`/projects/${id}`}>
           <a>
             <Image
-              src={attributes.cover.data.attributes.url}
+              src={attributes?.cover?.data?.attributes?.url}
               loader={myLoader}
               layout="fill"
               alt=""
