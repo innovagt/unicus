@@ -11,7 +11,6 @@ import configLanguajeWeb from "../config/language";
 
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/urls";
-
 const DynamicComponentWithNoSSR = dynamic(
   () => import("../components/common/wowComponent"),
   { ssr: false }
@@ -46,8 +45,6 @@ const Home = ({ projects, configWeb }) => {
     if (indice > 2) return "col-xs-12 col-sm-6 col-md-4";
     return "col-xs-12 col-sm-6 col-md-6";
   };
-
-  // const [useScript, setUseScript] = useState(false);
 
   useEffect(() => {
     setProjects(data_projects);
@@ -116,7 +113,6 @@ const Home = ({ projects, configWeb }) => {
           data-width="640"
           data-height="360"
           playsInline
-          preload
           loop
           muted
           autoPlay
@@ -135,15 +131,24 @@ const Home = ({ projects, configWeb }) => {
         <div id="BoxArticle"></div>
         <div className="about-text">
           <div className="container-in">
-            <h2 className="wow fadeInUp">{subtitleHome}</h2>
-            <div className="wow fadeInUp">
-              <ReactMarkdown>{descHome}</ReactMarkdown>
+            <div className='row'>
+              <div className='col-md-12 wow fadeInUp'>
+                <h2>{subtitleHome}</h2>
+              </div>
+              <div className='col-md-12 wow fadeInUp'>
+                <ReactMarkdown>{descHome}</ReactMarkdown>
+              </div>
+              <div className='col-md-12 wow fadeInUp'>
+                <Link href="/weare">
+                  <a className="wow fadeInUp">
+                    {configLanguajeWeb.buttonWeAre[`${router.locale}`]}
+                  </a>
+                </Link>
+              </div>
+              <div className='col-md-12 wow fadeInUp'>
+                <div className="down down-this-unicus"><span></span>Scroll</div>
+              </div>
             </div>
-            <Link href="/weare">
-              <a className="wow fadeInUp">
-                {configLanguajeWeb.buttonWeAre[`${router.locale}`]}
-              </a>
-            </Link>
           </div>
         </div>
       </section>
@@ -187,7 +192,7 @@ const Home = ({ projects, configWeb }) => {
 
 export const getServerSideProps = async (context) => {
   try {
-    const {data: dataProjects} = await axios.get(
+    const { data: dataProjects } = await axios.get(
       `${API_URL}/api/projects?pagination[start]=0&pagination[limit]=1`
     );
     const dataLimit = 100
@@ -197,7 +202,7 @@ export const getServerSideProps = async (context) => {
       const totalPages = Math.ceil(dataProjects.meta.pagination.total / dataLimit)
       // console.log(totalPages)
       for (let i = 1; i <= totalPages; i += 1) {
-        const {data: dp} = await axios.get(
+        const { data: dp } = await axios.get(
           `${API_URL}/api/projects?sort=position:ASC&fields[0]=title&fields[1]=date_event&fields[1]=locale&populate=cover&populate=localizations&filters[outstanding][$eq]=true&pagination[page]=${i}&pagination[pageSize]=${dataLimit}`
         );
         // console.log("Pagina No." + i, dp)

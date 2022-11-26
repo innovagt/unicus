@@ -69,6 +69,7 @@ const ParentGrid = styled.div`
       & .grid-p4 {
         grid-column-start: 1;
         grid-column-end: 7;
+        height: 525px !important;
       }
 
       & .grid-p2,
@@ -94,6 +95,7 @@ const ParentGrid = styled.div`
       & .grid-p6{
         grid-column-start: 1;
         grid-column-end: 7;
+        height: 525px !important;
       }
     }
 
@@ -101,6 +103,11 @@ const ParentGrid = styled.div`
     & > .grid-projects {
       height: 425px !important;
     }
+
+    & > .grid-projects {
+      height: 425px !important;
+    }
+
     & .grid-p1,
     & .grid-p2,
     & .grid-p3{
@@ -108,15 +115,18 @@ const ParentGrid = styled.div`
     }
 
     & .grid-p4{
+      height: 725px !important;
       grid-column-start: 1;
       grid-column-end: 7;
     }
 
     & .grid-p5{
+      height: 625px !important;
       grid-column-start: 1;
       grid-column-end: 4;
     }
     & .grid-p6{
+      height: 625px !important;
       grid-column-start: 4;
       grid-column-end: 7;
     }

@@ -43,9 +43,20 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
         <title>{titleProject} | Unicus</title>
       </Head>
       <DynamicComponentWithNoSSR />
-      <section className="showcase showcase-p">
+      <section
+        className="showcase showcase-p"
+        style={{
+          backgroundImage: `url(${attributes.cover.data.attributes.url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "bottom center",
+          // backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {
+          attributes.video_vimeo !== '' &&
         <video
-          className="object-fit onplay animate__animated animate__fadeIn"
+          className="object-fit onplay animate__animated animate__fadeIn animate__delay-2s animate__slow"
           data-width="640"
           data-height="360"
           playsInline
@@ -54,14 +65,12 @@ const ProjectDetail = ({ project, recommendedP, countryP }) => {
           autoPlay
         >
           <source
-            src={
-              attributes.video_vimeo
-                ? attributes.video_vimeo
-                : "https://player.vimeo.com/progressive_redirect/playback/583963426/rendition/1080p/file.mp4?loc=external&signature=e28a7a585fc8549caccd7882dbb511677b34391f9795e29aeea1eb9793e2d2a6"
-            }
+            src={attributes.video_vimeo}
             type="video/mp4"
           />
-        </video>
+            </video>
+        }
+        <div className="down"><span></span>Scroll</div>
       </section>
       <section className="detail-project">
         <div className="container-in">
